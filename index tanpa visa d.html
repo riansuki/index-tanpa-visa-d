@@ -209,7 +209,6 @@
         .result-icon.extension { background: #00BCD4; }
         .result-icon.stay { background: #4CAF50; }
         .result-icon.expiry { background: #2196F3; }
-        .result-icon.remaining { background: #795548; }
         .result-icon.fine { background: #F44336; }
         
         .result-content h3 {
@@ -226,18 +225,15 @@
         }
         .result-content p strong { font-weight: 600; }
 
-        #expiry-details p, #remaining-days-details p {
+        #expiry-details p {
             font-size: 16px;
             line-height: 1.5;
             font-weight: normal;
             margin-bottom: 4px;
             color: #555;
         }
-        #expiry-details p:last-child, #remaining-days-details p:last-child { margin-bottom: 0; }
-        #expiry-details strong, #remaining-days-details strong { font-weight: 600; color: #333; }
-        
-        #remaining-days-details .warning { color: #F44336; font-weight: normal; margin-top: 5px; }
-        #remaining-days-details .warning strong { color: #F44336; }
+        #expiry-details p:last-child { margin-bottom: 0; }
+        #expiry-details strong { font-weight: 600; color: #333; }
 
         .disclaimer {
             margin-top: 30px;
@@ -250,7 +246,7 @@
         }
         .disclaimer strong { color: #333; }
 
-        /* --- TAMPILAN KARTU VISA (BERLAKU UNTUK C DAN D) --- */
+        /* --- TAMPILAN KARTU VISA --- */
         .visa-options {
             display: flex;
             gap: 15px;
@@ -366,92 +362,6 @@
             gap: 10px;
         }
 
-        /* --- GAYA DESAIN TIMELINE MREP --- */
-        .timeline-container {
-            display: none; 
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 25px 20px;
-            margin-bottom: 25px;
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-        .timeline-title {
-            text-align: center;
-            font-weight: 600;
-            color: #1a3a6d;
-            margin-bottom: 30px;
-            font-size: 15px;
-        }
-        .timeline-track {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 0;
-        }
-        .timeline-line-bg {
-            position: absolute;
-            top: 15px; left: 40px; right: 40px; height: 4px;
-            background-color: #e5e7eb; z-index: 1;
-        }
-        .timeline-line-fill {
-            position: absolute;
-            top: 15px; left: 40px; height: 4px;
-            background-color: #000080; z-index: 2; transition: width 0.4s ease;
-        }
-        .timeline-step {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 3;
-            width: 80px;
-            cursor: pointer;
-        }
-        .timeline-circle {
-            width: 34px; height: 34px; border-radius: 50%;
-            background-color: #fff; border: 4px solid #000080; margin-bottom: 12px; transition: all 0.3s ease;
-        }
-        .timeline-circle.filled { background-color: #000080; }
-        .timeline-circle.plus-btn {
-            background-color: #fff; border: 4px dashed #000080; display: flex;
-            align-items: center; justify-content: center; font-size: 24px; font-weight: bold;
-            color: #000080; cursor: pointer; transition: all 0.2s ease;
-        }
-        .timeline-circle.plus-btn:hover { background-color: #f0f7ff; transform: scale(1.1); }
-        .timeline-square {
-            width: 34px; height: 34px; border-radius: 6px; 
-            background-color: #fff; border: 4px solid #000080; margin-bottom: 12px; transition: all 0.3s ease;
-        }
-        .timeline-square.filled { background-color: #000080; }
-        .timeline-step-title {
-            font-size: 12px; font-weight: 700; color: #1a3a6d; text-align: center; line-height: 1.3;
-        }
-        .timeline-step-subtitle {
-            font-size: 10px; color: #666; text-align: center; margin-top: 4px; line-height: 1.2;
-        }
-
-        /* Style Popup Pilihan MREP */
-        .mrep-popup {
-            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            z-index: 2000; width: 280px;
-        }
-        .mrep-popup h4 { margin-bottom: 15px; color: #1a3a6d; text-align: center; }
-        .popup-option {
-            padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; cursor: pointer;
-            text-align: center; font-weight: 600; transition: 0.2s;
-        }
-        .popup-option:hover { background: #2c5aa0; color: white; }
-        .mrep-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); z-index: 1999;
-        }
-
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 768px) {
             body { padding: 10px; }
@@ -479,99 +389,12 @@
             }
             .visa-card span { font-size: 11px; }
             .visa-options > div:nth-child(4) { grid-column: span 2; }
-            
-            /* LOGIKA BARU: Khusus Select Extension Duration di HP, buat semua tombol memanjang secara vertikal (persegi panjang) */
-            #d-extension-group .visa-options {
-                display: flex;
-                flex-direction: column;
-            }
-            #d-extension-group .visa-card {
-                min-height: 70px; /* Dibuat sedikit lebih ramping agar tidak terlalu makan tempat di HP */
-            }
-            
             .hover-overlay { display: none; }
             
             /* Tampilan Kartu Hasil di Mobile */
             .result-card { flex-direction: column; text-align: center; padding: 15px; }
             .result-icon { margin: 0 auto 15px auto; }
             .result-content { width: 100%; }
-            /* --- TIMELINE VERTIKAL MREP UNTUK MOBILE --- */
-            .timeline-container {
-                overflow-y: auto !important; /* LOGIKA BARU: Izinkan scroll vertikal */
-                overflow-x: hidden !important;
-                max-height: 400px !important; /* Membatasi tinggi agar menjadi kotak yang bisa di-scroll */
-                padding: 20px 15px !important;
-            }
-            #mrep-timeline-track {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                transform: none !important;
-                min-width: 100% !important;
-                padding: 20px 0 20px 20px !important;
-                margin-bottom: 0 !important; /* Mencegah bug margin negatif dari JavaScript yang memotong bagian bawah */
-                gap: 15px; 
-                position: relative;
-            }
-            /* Garis Biru Vertikal Utama */
-            #mrep-timeline-track::before {
-                content: '';
-                position: absolute;
-                left: 35px; 
-                top: 37px; 
-                bottom: 40px; 
-                width: 4px;
-                background-color: #000080;
-                z-index: 1;
-            }
-            .mobile-hide {
-                display: none !important;
-            }
-            .timeline-step {
-                display: grid !important;
-                grid-template-columns: 34px 1fr !important;
-                grid-template-rows: auto auto auto !important;
-                column-gap: 15px !important;
-                row-gap: 3px !important;
-                width: 100% !important;
-                align-items: start !important;
-            }
-            .timeline-circle, .timeline-square {
-                grid-column: 1 / 2;
-                grid-row: 1 / 4;
-                margin: 0 !important;
-                z-index: 2;
-                position: relative;
-            }
-            .step-date {
-                position: static !important;
-                grid-column: 2 / 3;
-                grid-row: 1 / 2;
-                text-align: left !important;
-                font-size: 11px !important;
-            }
-            .timeline-step-title {
-                grid-column: 2 / 3;
-                grid-row: 2 / 3;
-                text-align: left !important;
-            }
-            .timeline-step-subtitle {
-                grid-column: 2 / 3;
-                grid-row: 3 / 4;
-                text-align: left !important;
-                margin-top: 0 !important;
-            }
-            .segment-badge {
-                position: relative !important;
-                left: 0 !important;
-                top: 0 !important;
-                transform: none !important;
-                align-self: flex-start !important;
-                margin-left: 49px !important; /* Sejajar dengan teks di sebelah kanan lingkaran */
-                margin-top: -5px !important;
-                margin-bottom: -5px !important;
-                z-index: 5;
-            }
         }
     </style>
 </head>
@@ -604,7 +427,6 @@
                                 <option value="visaA">Visa Exemption (Visa A type) (Only 30 days)</option>
                                 <option value="visaB">Visa on Arrival (VOA)</option>
                                 <option value="visaC">Single Entry Visa (Index Visa C) </option>
-                                <option value="visaD">Multiple Entry Visa (Index Visa D)</option>
                             </select>
                         </div>
 
@@ -631,52 +453,6 @@
                             </div>
                             <div id="dynamic-c-visa-info" class="dynamic-info-box"></div>
                         </div>
-
-                        <div class="form-group" id="d-visa-subtype-group" style="display: none; margin-top: 20px; width: 100%;">
-                            <label style="margin-bottom: 12px;">Select Multiple Entry D Visa Duration:</label>
-                            <input type="hidden" id="d-visa-subtype" value="">
-                            
-                            <div class="visa-options">
-                                <div class="visa-card" onclick="selectDSubtype('30', this)">
-                                    <strong>30 Days</strong>
-                                    <span>Initial Stay</span>
-                                    <div class="hover-overlay">Initial stay 30 days.<br>Non-extendable.</div>
-                                </div>
-                                <div class="visa-card" onclick="selectDSubtype('60', this)">
-                                    <strong>60 Days</strong>
-                                    <span>Initial Stay</span>
-                                    <div class="hover-overlay">Initial stay 60 days.<br>Extendable 2x.<br>(D8 Non-extendable)</div>
-                                </div>
-                                <div class="visa-card" onclick="selectDSubtype('180', this)">
-                                    <strong>180 Days</strong>
-                                    <span>Initial Stay</span>
-                                    <div class="hover-overlay">Initial stay 180 days.<br>Extendable 1x.</div>
-                                </div>
-                            </div>
-                            
-                            <div id="d-extension-group" style="display: none; margin-top: 20px; width: 100%;">
-                                <label style="margin-bottom: 12px;">Select First Extension Duration:</label>
-                                <div class="visa-options">
-                                    <div class="visa-card selected" onclick="setExtension('0', this)">
-                                        <strong>0 Extension</strong>
-                                        <span>(60 days total)</span>
-                                    </div>
-                                    <div class="visa-card" onclick="setExtension('1', this)">
-                                        <strong>1 Extension</strong>
-                                        <span>(120 days total)</span>
-                                    </div>
-                                    <div class="visa-card" onclick="setExtension('2', this)">
-                                        <strong>2 Extensions</strong>
-                                        <span>(180 days total)</span>
-                                    </div>
-                                    <div class="visa-card" onclick="setExtension('D8', this)">
-                                        <strong style="font-size: 15px; line-height: 1.2;">Non extendable visa</strong>
-                                        <span style="font-size: 11px; margin-top: 4px;">(D8 non extendable)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="dynamic-d-visa-info" class="dynamic-info-box"></div>
-                        </div>
                         
                         <div id="visa-info-box" style="display: none; background: #f9f9f9; border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px; font-size: 0.9em; line-height: 1.5;"></div>
                         <div id="voaInfoBox" style="display:none; margin-top:15px; padding:15px; border:1px solid #ccc; border-radius:8px; background:#f9f9f9;">
@@ -694,15 +470,7 @@
                             <strong>Exceptions:</strong><br>
                             - Visas C12, C22A, and C22B: Initially issued for 180 days and can be extended once for another 180 days, allowing a total stay of 360 days in the country. These visas are intended for longer stays related to investments, academic internships, or company internships.<br>
                             - Visas C7, C7A, C7B, C7C: initially issued for 30 days and are not eligible for extension
-                        </div>
-
-                        <div id="multipleEntryBox" style="display:none; margin-top:10px; padding:10px; background-color:#f1f1f1; border:1px solid #ccc; border-radius:5px;">
-                            <p>
-                                Indonesia offers a variety of Multiple Entry D Visas, designed to accommodate different needs and activities for foreign nationals. These visas allow multiple entries into Indonesia for specific purposes, such as tourism, business, investment, filming, and more.<br><br>
-                                <strong>Flexibility:</strong> Allows for multiple entries into Indonesia, making it ideal for frequent travelers.<br>
-                                <strong>Extended Validity:</strong> Depending on the type, visas are valid for 1, 2, or 5 years, reducing the need for frequent visa renewals.<br>
-                                <strong>Purpose-Specific:</strong> Each visa type is tailored for specific activities, ensuring that foreign nationals can engage in their intended activities without legal complications.
-                            </p>
+                            <br>- Visa C18: Initially issued for a maximum stay of 60 days from the date of entry, with a total allowable stay of up to 90 days.</br>
                         </div>
 
                         <div id="voaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
@@ -747,21 +515,6 @@
                             </div>
                         </div>
 
-                       <div class="form-group" id="validity-group" style="display: none; margin-bottom: 20px; width: 100%;">
-                            <label style="margin-bottom: 12px;">Select Visa Validity Period:</label>
-                            <input type="hidden" id="visa-validity" value="">
-                            <div class="visa-options">
-                                <div class="visa-card" onclick="selectValidity('1', this)" style="height: 80px;"><strong>1 Year</strong></div>
-                                <div class="visa-card" onclick="selectValidity('2', this)" style="height: 80px;"><strong>2 Years</strong></div>
-                                <div class="visa-card" onclick="selectValidity('5', this)" style="height: 80px;"><strong>5 Years</strong></div>
-                            </div>
-                        </div>
-
-                        <div id="mrep-timeline-ui" class="timeline-container">
-                            <div class="timeline-title">Plan Your Extensions</div>
-                            <div class="timeline-track" id="mrep-timeline-track"></div>
-                        </div>
-
                         <div class="form-row" id="extensions-dropdown-row">
                             <div class="form-group">
                                 <label for="extensions">Extensions</label>
@@ -789,7 +542,7 @@
                     </div>
                 </div>
 
-                <div class="result-card">
+                <div class="result-card" style="display: none;" id="extension-stay-card">
                     <div class="result-icon extension"><i class="fas fa-calendar-plus"></i></div>
                     <div class="result-content">
                         <h3>Extension & Allowed Stay total</h3>
@@ -819,21 +572,12 @@
             </div>
 
             <div style="text-align: center; margin-top: 25px; padding: 15px; border-top: 1px solid #eee;">
-                <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Bantu kami meningkatkan layanan dengan memberikan masukan Anda:</p>
-                <a href="ISI_LINK_GOOGLE_FORM_ANDA_DISINI" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #2c5aa0; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <i class="fas fa-comment-dots"></i> Berikan Masukan / Feedback Pengguna
+                <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Help us improve our service by providing your feedback:</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqacPZ0zG7suBFO4-7w7sqYJwE81razzaYVcXyXgm1SFMbKg/viewform?usp=dialog" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #2c5aa0; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <i class="fas fa-comment-dots"></i> Give Your Feedback
                 </a>
             </div>
         </section>
-    </div>
-
-    <div id="mrep-overlay" class="mrep-overlay" onclick="closeMrepPopup()"></div>
-    <div id="mrep-popup" class="mrep-popup">
-        <h4>add your next visa extension</h4>
-        <div class="popup-option" onclick="addMrepTrip(180)">180 Days (2x Extension)</div>
-        <div class="popup-option" onclick="addMrepTrip(120)">120 Days (1x Extension)</div>
-        <div class="popup-option" onclick="addMrepTrip(60)">60 Days (0x Extension)</div>
-        <button onclick="closeMrepPopup()" style="width: 100%; margin-top: 10px; border: none; background: none; color: #666; cursor: pointer;">Batal</button>
     </div>
 
    <script>
@@ -862,7 +606,7 @@
                 infoContent = `<strong>Applicable Visa Types (30 Days):</strong> Visa C7, C7A, C7B, C7C`;
             } 
             else if (value === '60') {
-                infoContent = `<strong>Applicable Visa Types (60 Days):</strong> Visa C1, C2, C3, C5, C6, C7, C8A, C8B, C9, C9A, C9B, C10, C10A, C11, C11A, C13, C14, C15, C16, C17, C19, C20, C21`;
+                infoContent = `<strong>Applicable Visa Types (60 Days):</strong> Visa C1, C2, C3, C5, C6, C7, C8A, C8B, C9, C9A, C9B, C10, C10A, C11, C11A, C13, C14, C15, C16, C17, C18, C19, C20, C21`;
             } 
             else if (value === '180') {
                 infoContent = `<strong>Applicable Visa Types (180 Days):</strong> Visa C12, C22A, C22B`;
@@ -887,320 +631,18 @@
             else if (subType === '60') {
                 extensionsSelect.innerHTML = `
                     <option value="0">No Extension</option>
+                    <option value="c18_ext">1 Extension (30 days) [C18 Visa]</option>
                     <option value="1">1 Extension (60 days)</option>
                     <option value="2">2 Extensions (120 days)</option>
                 `;
                 extensionsSelect.value = '0';
-            } else if (subType === '180') {
+            }
+            else if (subType === '180') {
                 extensionsSelect.innerHTML = `
                     <option value="0">No Extension</option>
                     <option value="1">1 Extension (180 days)</option>
                 `;
                 extensionsSelect.value = '0';
-            }
-        }
-
-        // --- FUNGSI GLOBAL BARU UNTUK KARTU EKSTENSI D ---
-        window.setExtension = function(value, element) {
-            document.getElementById('extensions').value = value;
-            const container = element.parentElement;
-            const allCards = container.querySelectorAll('.visa-card');
-            allCards.forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
-            
-            delete window.mrepManualActiveIndex;
-            
-            if (typeof renderMrepTimeline === "function") {
-                renderMrepTimeline();
-            }
-        }
-
-        window.additionalTrips = [];
-
-        const originalSetExtension = window.setExtension;
-        window.setExtension = function(value, element) {
-            window.additionalTrips = []; 
-            originalSetExtension(value, element);
-        }
-
-        // --- FUNGSI MENGGAMBAR TIMELINE MREP ---
-        window.renderMrepTimeline = function() {
-            const subtypeD = document.getElementById('d-visa-subtype').value;
-            const extDStr = document.getElementById('extensions').value;
-            const validity = document.getElementById('visa-validity').value;
-            const entryDateStr = document.getElementById('entry-date').value;
-            const trackContainer = document.getElementById('mrep-timeline-track');
-            const mrepTimeline = document.getElementById('mrep-timeline-ui');
-
-            if (!mrepTimeline || !trackContainer || !validity || subtypeD === '30' || extDStr === 'D8') {
-                if(mrepTimeline) mrepTimeline.style.display = 'none';
-                return;
-            }
-
-            mrepTimeline.style.display = 'block';
-            const base = parseInt(subtypeD);
-            const extD = parseInt(extDStr) || 0;
-            const validityYears = parseInt(validity);
-            const validityLimitDays = validityYears * 360;
-
-            let firstStayTotal = base + (extD * (base === 180 ? 180 : 60));
-            let segmentDurations = [firstStayTotal]; 
-
-            let steps = [{ days: 1, sub: 'Initial Entry', type: 'filled' }];
-            if (firstStayTotal < validityLimitDays) {
-                steps.push({ days: firstStayTotal, sub: 'First Extension', type: 'filled' });
-            }
-
-            let currentTotal = firstStayTotal;
-            const ordinals = ["Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"];
-            window.additionalTrips.forEach((duration, idx) => {
-                currentTotal += duration;
-                let extLabel = (ordinals[idx] || (idx + 2) + "th") + " Extension";
-                if (currentTotal < validityLimitDays) {
-                    steps.push({ days: currentTotal, sub: extLabel, type: 'filled' });
-                    segmentDurations.push(duration);
-                }
-            });
-
-            let baseDate = new Date(entryDateStr + 'T00:00:00');
-            const getFmtDate = (dCount) => {
-                if (!entryDateStr) return "";
-                let d = new Date(baseDate);
-                d.setDate(d.getDate() + (dCount - 1));
-                return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-            };
-
-            let hasPlusButton = currentTotal < validityLimitDays;
-            let domElementsCount = steps.length + (hasPlusButton ? 1 : 0) + 1; 
-            let fillWidth = (currentTotal >= validityLimitDays) ? 100 : ((steps.length - 1) / (domElementsCount - 1)) * 100;
-
-            let html = `<div class="timeline-line-bg mobile-hide"></div>`;
-            html += `
-            <div class="mobile-hide" style="position: absolute; top: 15px; left: 40px; right: 40px; height: 4px; z-index: 2;">
-                <div style="width: ${fillWidth}%; height: 100%; background-color: #000080; transition: width 0.4s ease;"></div>
-            </div>`;
-
-            segmentDurations.forEach((dur, i) => {
-                let leftPos = `calc(40px + ((100% - 80px) / ${domElementsCount - 1}) * ${i + 0.5})`;
-                html += `
-                <div class="segment-badge" style="position: absolute; top: 17px; left: ${leftPos}; transform: translate(-50%, -50%); z-index: 4; background: #fff; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; color: #000080; border: 1px solid #000080; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,0.1); order: ${i * 2 + 1};">
-                    ${dur} Days
-                </div>`;
-            });
-
-            steps.forEach((step, i) => {
-                html += `
-                <div class="timeline-step" style="order: ${i * 2};">
-                    <div class="step-date" style="position: absolute; top: -22px; width: 100%; text-align: center; font-size: 10px; font-weight: 700; color: #1a3a6d; white-space: nowrap;">${getFmtDate(step.days)}</div>
-                    <div class="timeline-circle filled"></div>
-                    <div class="timeline-step-title">Day - ${step.days}</div>
-                    <div class="timeline-step-subtitle">${step.sub}</div>
-                </div>`;
-            });
-
-            let nextOrder = steps.length * 2;
-            if (hasPlusButton) {
-                html += `
-                <div class="timeline-step" style="order: ${nextOrder};" onclick="showMrepPopup()">
-                    <div class="step-date" style="position: absolute; top: -22px; width: 100%; text-align: center; font-size: 10px; font-weight: 700; color: #1a3a6d; white-space: nowrap;"></div>
-                    <div class="timeline-circle plus-btn">+</div>
-                    <div class="timeline-step-title">Add Extensions</div>
-                    <div class="timeline-step-subtitle">Plan Future Stay</div>
-                </div>`;
-            }
-
-            let squareClass = (currentTotal >= validityLimitDays) ? "timeline-square filled" : "timeline-square";
-            
-            html += `
-            <div class="timeline-step" style="order: 999;">
-                <div class="step-date" style="position: absolute; top: -22px; width: 100%; text-align: center; font-size: 10px; font-weight: 700; color: #1a3a6d; white-space: nowrap;">${getFmtDate(validityLimitDays)}</div>
-                <div class="${squareClass}"></div>
-                <div class="timeline-step-title">Day - ${validityLimitDays}</div>
-                <div class="timeline-step-subtitle">(${validityYears} Year Validity)</div>
-            </div>`;
-
-            trackContainer.innerHTML = html;
-
-            let requiredWidth = domElementsCount * 85; 
-            let parentWidth = mrepTimeline.clientWidth - 40; 
-            
-            if (requiredWidth > parentWidth && parentWidth > 0) {
-                let scaleRatio = parentWidth / requiredWidth;
-                trackContainer.style.minWidth = requiredWidth + "px";
-                trackContainer.style.transform = `scale(${scaleRatio})`;
-                trackContainer.style.transformOrigin = "left top";
-                
-                let trackHeight = trackContainer.offsetHeight || 100;
-                let emptySpace = trackHeight * (1 - scaleRatio);
-                trackContainer.style.marginBottom = `-${emptySpace}px`;
-            } else {
-                trackContainer.style.minWidth = "100%";
-                trackContainer.style.transform = "none";
-                trackContainer.style.marginBottom = "0px";
-            }
-        };
-
-        window.showMrepPopup = () => {
-            const validity = document.getElementById('visa-validity').value;
-            const subtypeD = document.getElementById('d-visa-subtype').value;
-            const extDStr = document.getElementById('extensions').value;
-            
-            if (!validity) return;
-            
-            const validityLimitDays = parseInt(validity) * 360;
-            const base = parseInt(subtypeD);
-            const extD = parseInt(extDStr) || 0;
-            
-            let currentTotal = base + (extD * (base === 180 ? 180 : 60));
-            window.additionalTrips.forEach(duration => {
-                currentTotal += duration;
-            });
-
-            const popup = document.getElementById('mrep-popup');
-            const options = popup.querySelectorAll('.popup-option');
-            
-            let durations = [];
-            if (base === 60) {
-                durations = [180, 120, 60];
-                if(options[0]) {
-                    options[0].innerHTML = "180 Days (2x Extension)";
-                    options[0].setAttribute('onclick', 'addMrepTrip(180)');
-                }
-                if(options[1]) {
-                    options[1].innerHTML = "120 Days (1x Extension)";
-                    options[1].setAttribute('onclick', 'addMrepTrip(120)');
-                }
-                if(options[2]) {
-                    options[2].innerHTML = "60 Days (0x Extension)";
-                    options[2].setAttribute('onclick', 'addMrepTrip(60)');
-                    options[2].style.display = 'block';
-                }
-            } else if (base === 180) {
-                durations = [360, 180];
-                if(options[0]) {
-                    options[0].innerHTML = "360 Days (1x Extension)";
-                    options[0].setAttribute('onclick', 'addMrepTrip(360)');
-                }
-                if(options[1]) {
-                    options[1].innerHTML = "180 Days (0x Extension)";
-                    options[1].setAttribute('onclick', 'addMrepTrip(180)');
-                }
-                if(options[2]) options[2].style.display = 'none'; 
-            }
-
-            let availableOptionsCount = 0;
-            durations.forEach((val, index) => {
-                if (options[index] && val > 0) {
-                    if ((currentTotal + val) > validityLimitDays) {
-                        options[index].style.display = 'none'; 
-                    } else {
-                        options[index].style.display = 'block'; 
-                        availableOptionsCount++;
-                    }
-                }
-            });
-
-            if (availableOptionsCount === 0) {
-                alert("Rencana perjalanan Anda sudah mencapai batas maksimal masa berlaku visa.");
-                return; 
-            }
-
-            document.getElementById('mrep-overlay').style.display = 'block';
-            document.getElementById('mrep-popup').style.display = 'block';
-        };
-        
-        window.closeMrepPopup = () => {
-            document.getElementById('mrep-overlay').style.display = 'none';
-            document.getElementById('mrep-popup').style.display = 'none';
-        };
-        
-        window.addMrepTrip = (duration) => {
-            window.additionalTrips.push(duration);
-            closeMrepPopup();
-            renderMrepTimeline();
-        };
-
-        window.updateMrepTimeline = function(index) {
-            if (window.mrepActiveIndex === index) {
-                window.mrepManualActiveIndex = index - 1;
-            } else {
-                window.mrepManualActiveIndex = index;
-            }
-            renderMrepTimeline();
-        }
-
-        window.selectValidity = function(value, element) {
-            document.getElementById('visa-validity').value = value;
-            const container = element.parentElement;
-            const allCards = container.querySelectorAll('.visa-card');
-            allCards.forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
-            
-            window.additionalTrips = []; 
-            
-            const mrepTimeline = document.getElementById('mrep-timeline-ui');
-            if (mrepTimeline) {
-                mrepTimeline.style.display = 'block';
-                renderMrepTimeline();
-            }
-        }
-
-        window.selectDSubtype = function(value, element) {
-            const hiddenInput = document.getElementById('d-visa-subtype');
-            hiddenInput.value = value;
-
-            const container = document.getElementById('d-visa-subtype-group');
-            const allCards = container.querySelectorAll('.visa-card');
-            allCards.forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
-
-            const dynamicBox = document.getElementById('dynamic-d-visa-info');
-            let infoContent = "";
-
-            if (value === '30') {
-                infoContent = `<strong>Applicable Visa Types (30 Days):</strong> Visa D7`;
-            } 
-            else if (value === '60') {
-                infoContent = `<strong>Applicable Visa Types (60 Days):</strong> Visa D1, D2, D3, D4, D14, D17, D8.<br><span style="color:#d32f2f; font-size:13px;">*Note: Visa D8 is also 60 days but Non-Extendable.</span>`;
-            } 
-            else if (value === '180') {
-                infoContent = `<strong>Applicable Visa Types (180 Days):</strong> Visa D12`;
-            }
-
-            dynamicBox.innerHTML = infoContent;
-            dynamicBox.style.display = 'block';
-            setTimeout(() => { dynamicBox.classList.add('show'); }, 10);
-
-            updateExtensionsForD(value);
-        }
-
-        window.updateExtensionsForD = function(subType) {
-            document.getElementById('extensions').value = '0'; 
-            const extensionGroup = document.getElementById('d-extension-group');
-            
-            if (!extensionGroup) return;
-
-            const allCards = extensionGroup.querySelectorAll('.visa-card');
-            allCards.forEach(card => {
-                card.classList.remove('selected');
-                card.style.display = 'flex'; 
-            });
-            if(allCards[0]) allCards[0].classList.add('selected');
-
-            if (subType === '30') {
-                extensionGroup.style.display = 'none'; 
-            } else if (subType === '60') {
-                extensionGroup.style.display = 'block'; 
-                if(allCards[0]) allCards[0].innerHTML = '<strong>0 Extension</strong><span>(60 days total)</span>';
-                if(allCards[1]) allCards[1].innerHTML = '<strong>1 Extension</strong><span>(120 days total)</span>';
-                if(allCards[2]) allCards[2].innerHTML = '<strong>2 Extensions</strong><span>(180 days total)</span>';
-                if(allCards[3]) allCards[3].innerHTML = '<strong style="font-size: 15px; line-height: 1.2;">Non extendable visa</strong><span style="font-size: 11px; margin-top: 4px;">(D8 non extendable)</span>';
-            } else if (subType === '180') {
-                extensionGroup.style.display = 'block';
-                if(allCards[0]) allCards[0].innerHTML = '<strong>0 Extension</strong><span>(180 days total)</span>';
-                if(allCards[1]) allCards[1].innerHTML = '<strong>1 Extension</strong><span>(360 days total)</span>';
-                if(allCards[2]) allCards[2].style.display = 'none'; 
-                if(allCards[3]) allCards[3].style.display = 'none'; 
             }
         }
 
@@ -1211,7 +653,6 @@
         const extensionsSelect = document.getElementById('extensions');
         
         const cVisaSubtypeGroup = document.getElementById('c-visa-subtype-group');
-        const dVisaSubtypeGroup = document.getElementById('d-visa-subtype-group'); 
 
         const visaStep = document.getElementById('step-visa');
         const detailsStep = document.getElementById('step-details');
@@ -1220,7 +661,6 @@
         const infoBox = document.getElementById('visa-info-box');
         const voaBox = document.getElementById('voaInfoBox');
         const singleEntryInfoBox = document.getElementById('singleEntryInfoBox');
-        const multipleEntryBox = document.getElementById('multipleEntryBox');
 
         const voaLink = document.getElementById('voaLink');
         const voaModal = document.getElementById('voaModal');
@@ -1241,28 +681,15 @@
             infoBox.style.display = 'none';
             voaBox.style.display = 'none';
             singleEntryInfoBox.style.display = 'none';
-            multipleEntryBox.style.display = 'none';
-            
             cVisaSubtypeGroup.style.display = 'none';
-            dVisaSubtypeGroup.style.display = 'none';
             
             document.getElementById('c-visa-subtype').value = "";
-            document.getElementById('d-visa-subtype').value = "";
-            
             document.querySelectorAll('.visa-card').forEach(card => card.classList.remove('selected'));
             
             document.querySelectorAll('.dynamic-info-box').forEach(box => {
                 box.classList.remove('show');
                 box.style.display = 'none';
             });
-
-            const validityInput = document.getElementById('visa-validity');
-            if(validityInput) validityInput.value = "";
-            const validityGroup = document.getElementById('validity-group');
-            if(validityGroup) {
-                validityGroup.querySelectorAll('.visa-card').forEach(card => card.classList.remove('selected'));
-                validityGroup.style.display = 'none';
-            }
 
             if (selectedVisa === 'visaA') {
                 infoBox.style.display = 'block';
@@ -1271,17 +698,8 @@
             } else if (selectedVisa === 'visaC') {
                 singleEntryInfoBox.style.display = 'block';
                 cVisaSubtypeGroup.style.display = 'block'; 
-            } else if (selectedVisa === 'visaD') {
-                multipleEntryBox.style.display = 'block';
-                dVisaSubtypeGroup.style.display = 'block'; 
             }
             
-            const dExtensionGroup = document.getElementById('d-extension-group');
-            if (dExtensionGroup) dExtensionGroup.style.display = 'none';
-            
-            const mrepTimeline = document.getElementById('mrep-timeline-ui');
-            if (mrepTimeline) mrepTimeline.style.display = 'none';
-
             const extRow = document.getElementById('extensions-dropdown-row');
             if (extRow) extRow.style.display = 'flex';
             
@@ -1303,43 +721,12 @@
                 extensionsSelect.value = '0';
                 extensionsSelect.disabled = true;
             }
-            else if (selectedVisa === 'visaD') {
-                if (extRow) extRow.style.display = 'none'; 
-                extensionsSelect.innerHTML = `
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="D8">D8</option> `;
-                extensionsSelect.value = '0';
-            }
         });
 
         nextBtn.addEventListener('click', function() {
             if (visaTypeSelect.value === 'visaC' && document.getElementById('c-visa-subtype').value === "") {
                 alert('Please select the Single Entry C Visa Duration.');
                 return;
-            }
-            if (visaTypeSelect.value === 'visaD' && document.getElementById('d-visa-subtype').value === "") {
-                alert('Please select the Multiple Entry D Visa Duration.');
-                return;
-            }
-
-            const validityGroup = document.getElementById('validity-group');
-            const entryDateInput = document.getElementById('entry-date');
-
-            if (validityGroup) {
-                if (visaTypeSelect.value === 'visaD') {
-                    const subtypeD = document.getElementById('d-visa-subtype').value;
-                    const extD = document.getElementById('extensions').value;
-                    
-                    if (subtypeD === '30' || extD === 'D8') {
-                        validityGroup.style.display = 'none';
-                    } else {
-                        validityGroup.style.display = entryDateInput.value ? 'block' : 'none';
-                    }
-                } else {
-                    validityGroup.style.display = 'none';
-                }
             }
 
             if (visaTypeSelect.value) {
@@ -1400,7 +787,18 @@
             const exitDate = exitDateInput ? new Date(exitDateInput + 'T00:00:00') : null; 
             
             const visaType = visaTypeSelect.value;
-            const extensions = parseInt(document.getElementById('extensions').value) || 0;
+            
+            // Logika baru untuk menangani opsi khusus C18
+            const extensionsValue = document.getElementById('extensions').value;
+            let extensions = 0;
+            let isC18Special = false;
+
+            if (extensionsValue === 'c18_ext') {
+                extensions = 1;
+                isC18Special = true;
+            } else {
+                extensions = parseInt(extensionsValue) || 0;
+            }
 
             let baseDays = 0;
             let extensionDurationPerUnit = 30; 
@@ -1408,15 +806,12 @@
             if (visaType === 'visaC') {
                 const subType = document.getElementById('c-visa-subtype').value;
                 if (subType === '30') { baseDays = 30; extensionDurationPerUnit = 30; } 
-                else if (subType === '60') { baseDays = 60; extensionDurationPerUnit = 60; } 
+                else if (subType === '60') { 
+                    baseDays = 60; 
+                    // Jika C18 dipilih, perpanjangan hanya 30 hari. Jika tidak, normal 60 hari.
+                    extensionDurationPerUnit = isC18Special ? 30 : 60; 
+                } 
                 else if (subType === '180') { baseDays = 180; extensionDurationPerUnit = 180; }
-            }
-            else if (visaType === 'visaD') {
-                const subType = document.getElementById('d-visa-subtype').value;
-                if (subType === '30') { baseDays = 30; extensionDurationPerUnit = 30; } 
-                else if (subType === '60') { baseDays = 60; extensionDurationPerUnit = 60; } 
-                else if (subType === '180') { baseDays = 180; extensionDurationPerUnit = 180; }
-                else if (subType === 'D8') { baseDays = 60; extensionDurationPerUnit = 0; } 
             }
             else {
                 switch (visaType) {
@@ -1436,23 +831,9 @@
             }
 
             const extensionOnlyDays = extensions * extensionDurationPerUnit;
-            
-            let additionalTripsTotal = 0;
-            if (visaType === 'visaD' && window.additionalTrips) {
-                window.additionalTrips.forEach(trip => {
-                    additionalTripsTotal += trip;
-                });
-            }
-
-            const totalDays = baseDays + extensionOnlyDays + additionalTripsTotal;
+            const totalDays = baseDays + extensionOnlyDays;
             
             const formatDate = (date) => date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-
-            const getCalculatedDate = (daysCount) => {
-                let d = new Date(entryDate);
-                d.setDate(d.getDate() + (daysCount - 1));
-                return formatDate(d);
-            };
             
             const dateForFirstExtension = new Date(entryDate);
             dateForFirstExtension.setDate(dateForFirstExtension.getDate() + (baseDays - 1));
@@ -1592,86 +973,15 @@
             document.getElementById('base-duration-label').textContent = baseDurationLabelText; 
             document.getElementById('base-duration-result').textContent = `${baseDays} days`;
             
-            const resultCardContent = document.getElementById('extension-stay-result');
-            const resultHeader = resultCardContent.previousElementSibling;
-            const extensionStayCard = resultCardContent.closest('.result-card');
-
-            if (visaType === 'visaD' && document.getElementById('visa-validity').value) {
-                // Pastikan kartu ini muncul untuk Visa D
-                if (extensionStayCard) extensionStayCard.style.display = 'flex';
-                
-                resultHeader.textContent = "Visa Extensions & Extension Validity Date";
-                
-                let firstStayTotal = baseDays + extensionOnlyDays;
-                let runningTotal = firstStayTotal;
-                let extHtml = `<div style="display: flex; flex-direction: column; gap: 8px;">`;
-                
-                extHtml += `
-                <div style="display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="font-weight: bold; color: #1a3a6d; font-size: 14px;">1.</span>
-                        <span style="font-size: 14px;">First Extension (Initial + Extension): <strong>${firstStayTotal} days</strong> <span style="color: #666; font-size: 12px;">(${baseDays} + ${extensionOnlyDays})</span></span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #1a3a6d; background: #e3f2fd; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
-                        <i class="far fa-calendar-alt"></i>
-                        Validity: ${getCalculatedDate(firstStayTotal)}
-                    </div>
-                </div>`;
-                
-                if (window.additionalTrips && window.additionalTrips.length > 0) {
-                    const ordinals = ["Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"];
-                    window.additionalTrips.forEach((tripDays, idx) => {
-                        runningTotal += tripDays;
-                        let extLabel = (ordinals[idx] || (idx + 2) + "th") + " Extension";
-                        extHtml += `
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span style="font-weight: bold; color: #1a3a6d; font-size: 14px;">${idx + 2}.</span>
-                                <span style="font-size: 14px;">${extLabel}: <strong>${tripDays} days</strong></span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #1a3a6d; background: #e3f2fd; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
-                                <i class="far fa-calendar-alt"></i>
-                                Validity: ${getCalculatedDate(runningTotal)}
-                            </div>
-                        </div>`;
-                    });
-                }
-                
-                const validityYears = parseInt(document.getElementById('visa-validity').value);
-                const validityLimitDays = validityYears * 360;
-                
-                extHtml += `
-                <div style="margin-top: 10px; padding: 10px 5px; border-top: 1px dashed #ccc;">
-                    <span style="font-size: 16px; color: #1a3a6d;"><strong>Latest Visa Expiry date: ${getCalculatedDate(validityLimitDays)}</strong></span>
-                </div>`;
-                
-                extHtml += `
-                    <div style="margin-top: 15px; padding: 15px; background-color: #fffde7; border-left: 4px solid #FFC107; font-size: 13px; color: #555; line-height: 1.5; border-radius: 4px; box-shadow: 0 2px 4px rgba(255, 193, 7, 0.1);">
-                        <div style="display: flex; align-items: flex-start; gap: 10px;">
-                            <i class="fas fa-info-circle" style="color: #FFC107; font-size: 18px; margin-top: 2px;"></i>
-                            <div><strong>IMPORTANT NOTICE:</strong> stay permit extension can be applied for as early as 14 days before it expires. Please ensure to submit your application no later than 7 days before the expiry date to avoid the risk of overstaying.</div>
-                        </div>
-                    </div>
-                `;
-                extHtml += `</div>`;
-                resultCardContent.innerHTML = extHtml;
-                
-                const expiryCard = document.getElementById('expiry-details').closest('.result-card');
-                if (expiryCard) expiryCard.style.display = 'none';
-
-            } else {
-                // Sembunyikan kartu rangkuman (Extension & Allowed Stay total) untuk Visa C, A, dan B
-                if (extensionStayCard) extensionStayCard.style.display = 'none';
-                
-                const expiryCard = document.getElementById('expiry-details').closest('.result-card');
-                if (expiryCard) expiryCard.style.display = 'flex';
-                
-                document.getElementById('expiry-card-title').textContent = "Visa Latest Expiry Date and Extensions";
-                document.getElementById('expiry-details').innerHTML = expiryDetailsHtml;
-            }
+            // Sembunyikan kartu rangkuman yang tidak digunakan lagi
+            const extensionStayCard = document.getElementById('extension-stay-card');
+            if (extensionStayCard) extensionStayCard.style.display = 'none';
+            
+            document.getElementById('expiry-card-title').textContent = "Visa Latest Expiry Date and Extensions";
+            document.getElementById('expiry-details').innerHTML = expiryDetailsHtml;
             
             const fineElement = document.getElementById('potential-fine');
-            // Logika Baru: Menampilkan nominal denda di atas, lalu pesan penjelasan di bawahnya
+            
             let statusMessageHtml = `
                 <div style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed #ddd; font-size: 15px; color: #555; line-height: 1.5;">
                     ${remainingDaysMessage}${exitWarningMessage}
@@ -1679,36 +989,14 @@
             `;
             
             if (fine === -1) {
-                // Menaruh teks DEPORTATION di depan, diikuti pesan status di bawahnya
                 fineElement.innerHTML = `<span class="danger-text" style="font-size: 18px; display: block; margin-bottom: 5px;">DEPORTATION & BLACKLIST</span>` + statusMessageHtml;
             } else {
                 let fineAmount = fine > 0 ? `IDR ${fine.toLocaleString('en-US')}` : 'IDR 0';
-                // Jika terkena denda (lebih dari 0), nominal berwarna merah. Jika tidak, warna hitam.
                 let fineColor = fine > 0 ? '#d32f2f' : '#333'; 
-                // Menaruh angka denda di depan, diikuti pesan status di bawahnya
                 fineElement.innerHTML = `<strong style="font-size: 24px; color: ${fineColor}; display: block; margin-bottom: 5px;">${fineAmount}</strong>` + statusMessageHtml;
             }
             resultsContainer.classList.add('active');
         }
-
-        document.getElementById('entry-date').addEventListener('change', function() {
-            const visaType = visaTypeSelect.value;
-            const subtypeD = document.getElementById('d-visa-subtype').value;
-            const extD = document.getElementById('extensions').value;
-            const validityGroup = document.getElementById('validity-group');
-            const mrepTimeline = document.getElementById('mrep-timeline-ui');
-
-            if (visaType === 'visaD' && subtypeD !== '30' && extD !== 'D8') {
-                if (this.value) {
-                    validityGroup.style.display = 'block';
-                } else {
-                    validityGroup.style.display = 'none';
-                    if (mrepTimeline) mrepTimeline.style.display = 'none';
-                    document.getElementById('visa-validity').value = "";
-                    validityGroup.querySelectorAll('.visa-card').forEach(card => card.classList.remove('selected'));
-                }
-            }
-        });
     });
    </script>
 </body>
