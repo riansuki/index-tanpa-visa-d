@@ -397,7 +397,7 @@
         @media (max-width: 768px) {
             body { padding: 10px; }
             header { padding: 20px 15px; }
-            h1 { font-size: 22px; margin-top: 10px; }
+            h1 { font-size: 22px; margin-top: 25px; } /* Margin top added for language toggle space */
             
             .btn-back { top: 15px; left: 15px; padding: 6px 10px; font-size: 12px; }
             #step-details.form-container { padding-top: 55px; }
@@ -438,79 +438,64 @@
                     <button class="lang-btn" onclick="setLanguage('id')">ID</button>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.2); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block;">
-                    <span data-translate="updated_date">Updated 9 April 2026</span>
+                    <span data-i18n="header_updated">Updated 9 April 2026</span>
                 </div>
             </div>
-           <h1 style="letter-spacing: 2px;">SPECIVIC</h1>
-            <p class="subtitle" style="font-weight: 600; letter-spacing: 1px;" data-translate="subtitle_1">STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE</p>
-            <p class="subtitle" data-translate="subtitle_2">Calculate allowed stay, expiry date, overstay risk and potential fines</p>
+            <h1 style="letter-spacing: 2px;">SPECIVIC</h1>
+            <p class="subtitle" style="font-weight: 600; letter-spacing: 1px;" data-i18n="header_subtitle1">STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE</p>
+            <p class="subtitle" data-i18n="header_subtitle2">Calculate allowed stay, expiry date, overstay risk and potential fines</p>
         </header>
         
         <section class="calculator-section">
             <div class="intro">
-                <p data-translate="intro_text">This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.</p>
+                <p data-i18n="intro">This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.</p>
             </div>
             
             <div class="form-container">
                 <form id="visa-form">
                     <div class="form-container" id="step-visa">
-                       <div class="form-group">
-                            <label for="visa-type" data-translate="select_visa_label">Select Your Visa Type</label>
+                        <div class="form-group">
+                            <label for="visa-type" data-i18n="label_visa">Select Your Visa Type</label>
                             <select id="visa-type" required>
-                                <option value="" disabled selected data-translate="select_visa_default">Select your visa</option>
-                                <option value="visaA" data-translate="opt_visa_a">Visa Exemption (Visa A type) (Only 30 days)</option>
-                                <option value="visaB" data-translate="opt_visa_b">Visa on Arrival (VOA)</option>
-                                <option value="visaC" data-translate="opt_visa_c">Single Entry Visa (Index Visa C)</option>
+                                <option value="" disabled selected data-i18n="opt_default">Select your visa</option>
+                                <option value="visaA" data-i18n="opt_a">Visa Exemption (Visa A type) (Only 30 days)</option>
+                                <option value="visaB" data-i18n="opt_b">Visa on Arrival (VOA)</option>
+                                <option value="visaC" data-i18n="opt_c">Single Entry Visa (Index Visa C) </option>
                             </select>
                         </div>
 
                         <div class="form-group" id="c-visa-subtype-group" style="display: none; margin-top: 20px; width: 100%;">
-                            <label style="margin-bottom: 12px;">Select Single Entry C Visa Duration:</label>
+                            <label style="margin-bottom: 12px;" data-i18n="label_c_dur">Select Single Entry C Visa Duration:</label>
                             <input type="hidden" id="c-visa-subtype" value="">
                             
                             <div class="visa-options">
                                 <div class="visa-card" onclick="selectCSubtype('30', this)">
-                                    <strong>30 Days</strong>
-                                    <span>Initial Stay</span>
-                                    <div class="hover-overlay">Initial stay 30 days.<br>Non-extendable.</div>
+                                    <strong data-i18n="c_30_title">30 Days</strong>
+                                    <span data-i18n="c_desc">Initial Stay</span>
+                                    <div class="hover-overlay" data-i18n="c_30_hover">Initial stay 30 days.<br>Non-extendable.</div>
                                 </div>
                                 <div class="visa-card" onclick="selectCSubtype('60', this)">
-                                    <strong>60 Days</strong>
-                                    <span>Initial Stay</span>
-                                    <div class="hover-overlay">Initial stay 60 days.<br>Extendable 2x.</div>
+                                    <strong data-i18n="c_60_title">60 Days</strong>
+                                    <span data-i18n="c_desc">Initial Stay</span>
+                                    <div class="hover-overlay" data-i18n="c_60_hover">Initial stay 60 days.<br>Extendable 2x.</div>
                                 </div>
                                 <div class="visa-card" onclick="selectCSubtype('180', this)">
-                                    <strong>180 Days</strong>
-                                    <span>Initial Stay</span>
-                                    <div class="hover-overlay">Initial stay 180 days.<br>Extendable 1x.</div>
+                                    <strong data-i18n="c_180_title">180 Days</strong>
+                                    <span data-i18n="c_desc">Initial Stay</span>
+                                    <div class="hover-overlay" data-i18n="c_180_hover">Initial stay 180 days.<br>Extendable 1x.</div>
                                 </div>
                             </div>
                             <div id="dynamic-c-visa-info" class="dynamic-info-box"></div>
                         </div>
                         
                         <div id="visa-info-box" style="display: none; background: #f9f9f9; border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px; font-size: 0.9em; line-height: 1.5;"></div>
-                        <div id="voaInfoBox" style="display:none; margin-top:15px; padding:15px; border:1px solid #ccc; border-radius:8px; background:#f9f9f9;">
-                            <p style="font-size:16px; line-height:1.5;">
-                                For citizens of 97 countries, Indonesia offers a Visa On Arrival (VOA) or Electronic Visa On Arrival (EVOA),
-                                which allows entry for leisure purposes including tourism, business meetings, and government visits.<br><br>
-                                <strong>Duration:</strong> 30 days, with an option to extend for an additional 30 days (total of 60 days maximum stay).<br><br>
-                                <a href="#" id="voaLink" style="color:#007BFF; text-decoration:underline;">see eligible nationalities for Visa On Arrival (VOA)</a>
-                            </p>
-                        </div>
-                        
-                        <div id="singleEntryInfoBox" style="display:none; margin-top:15px; padding:15px; background-color:#f8f9fa; border:1px solid #d1d5db; border-radius:8px; font-size:14px; line-height:1.6;">
-                            <strong>Information:</strong> Indonesia offers a variety of Single entry visitor visa, designed to accommodate different needs and activities for foreign nationals. This type of visa allow for one-time entries into Indonesia for specific purposes, such as tourism, business, investment, filming, and more.<br><br>
-                            <strong>Most C visas:</strong> Are valid for 60 days from the date of entry and can be extended twice for 60 days each, resulting in a total stay of 180 days.<br><br>
-                            <strong>Exceptions:</strong><br>
-                            - Visas C12, C22A, and C22B: Initially issued for 180 days and can be extended once for another 180 days, allowing a total stay of 360 days in the country. These visas are intended for longer stays related to investments, academic internships, or company internships.<br>
-                            - Visas C7, C7A, C7B, C7C: initially issued for 30 days and are not eligible for extension
-                            <br>- Visa C18: Initially issued for a maximum stay of 60 days from the date of entry, with a total allowable stay of up to 90 days.</br>
-                        </div>
+                        <div id="voaInfoBox" style="display:none; margin-top:15px; padding:15px; border:1px solid #ccc; border-radius:8px; background:#f9f9f9; font-size:16px; line-height:1.5;"></div>
+                        <div id="singleEntryInfoBox" style="display:none; margin-top:15px; padding:15px; background-color:#f8f9fa; border:1px solid #d1d5db; border-radius:8px; font-size:14px; line-height:1.6;"></div>
 
                         <div id="voaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
                             <div style="background:#fff; width:90%; max-width:600px; margin:100px auto; padding:20px; border-radius:10px; position:relative;">
                                 <span id="closeVoaModal" style="position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer;">&times;</span>
-                                <h2 style="margin-bottom:10px;">VOA Eligible Countries</h2>
+                                <h2 style="margin-bottom:10px;" data-i18n="voa_title">VOA Eligible Countries</h2>
                                 <div style="max-height:400px; overflow-y:auto; line-height:1.8;">
                                     Albania, Andorra, Argentina, Armenia, Australia, Austria, Bahrain, Belarus, Belgium, Bosnia and Herzegovina, Brazil, 
                                     Brunei Darussalam, Bulgaria, Cambodia, Canada, Chile, China, Colombia, Croatia, Cyprus, Czech Republic, Denmark, 
@@ -526,23 +511,23 @@
                         </div>
 
                         <div id="next-btn" class="btn-calculate" style="margin-top: 20px;">
-                            <span data-translate="btn_next">Next</span> <i class="fas fa-arrow-right"></i>
+                            <span data-i18n="btn_next">Next</span> <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
 
                     <div class="form-container" id="step-details" style="display: none;">
                         <button type="button" id="back-btn" class="btn-back">
-                            <i class="fas fa-arrow-left"></i> <span data-translate="btn_back">Back</span>
+                            <i class="fas fa-arrow-left"></i> <span data-i18n="btn_back">Back</span>
                         </button>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="entry-date">Entry Date</label>
+                                <label for="entry-date" data-i18n="label_entry">Entry Date</label>
                                 <div class="date-input">
                                     <input type="date" id="entry-date" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exit-date">Planned Exit Date (optional)</label>
+                                <label for="exit-date" data-i18n="label_exit">Planned Exit Date (optional)</label>
                                 <div class="date-input">
                                     <input type="date" id="exit-date">
                                 </div>
@@ -551,17 +536,15 @@
 
                         <div class="form-row" id="extensions-dropdown-row">
                             <div class="form-group">
-                                <label for="extensions">Extensions</label>
+                                <label for="extensions" data-i18n="label_ext">Extensions</label>
                                 <select id="extensions">
-                                    <option value="0">No Extension</option>
-                                    <option value="1">1 Extension (30 days)</option>
-                                    <option value="2">2 Extensions (60 days)</option>
+                                    <!-- Populated by JS -->
                                 </select>
                             </div>
                         </div>
 
-                       <button type="submit" class="btn-calculate">
-                            <i class="fas fa-calculator"></i> <span data-translate="btn_calc">Calculate</span>
+                        <button type="submit" class="btn-calculate">
+                            <i class="fas fa-calculator"></i> <span data-i18n="btn_calc">Calculate</span>
                         </button>
                     </div>
                 </form>
@@ -575,19 +558,11 @@
                         <p id="base-duration-result">-</p>
                     </div>
                 </div>
-
-                <div class="result-card" style="display: none;" id="extension-stay-card">
-                    <div class="result-icon extension"><i class="fas fa-calendar-plus"></i></div>
-                    <div class="result-content">
-                        <h3>Extension & Allowed Stay total</h3>
-                        <p id="extension-stay-result">-</p> 
-                    </div>
-                </div>
                 
                 <div class="result-card">
                     <div class="result-icon expiry"><i class="fas fa-calendar-check"></i></div>
                     <div class="result-content">
-                        <h3 id="expiry-card-title">Visa Stay Permit Latest Validity Date and Extensions</h3>
+                        <h3 id="expiry-card-title" data-i18n="res_c2">Visa Stay Permit Latest Validity Date and Extensions</h3>
                         <div id="expiry-details">-</div>
                     </div>
                 </div>
@@ -595,59 +570,192 @@
                 <div class="result-card">
                     <div class="result-icon fine"><i class="fas fa-money-bill-wave"></i></div>
                     <div class="result-content">
-                        <h3>Potential Fine</h3>
+                        <h3 data-i18n="res_c3">Potential Fine</h3>
                         <p id="potential-fine">-</p>
                     </div>
                 </div>
             </div>
             
-            <div class="disclaimer">
+            <div class="disclaimer" data-i18n="disclaimer">
                 <strong>Disclaimer:</strong> This calculator provides estimates based on current Indonesian immigration regulations. Rules may change, and actual visa conditions may vary. Always verify with official immigration authorities or consult with an immigration expert for your specific situation. Overstay fines are calculated at IDR 1,000,000 per person, per day, in accordance with current regulations.
             </div>
 
             <div style="text-align: center; margin-top: 25px; padding: 15px; border-top: 1px solid #eee;">
-                <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Help us improve our service by providing your feedback:</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqacPZ0zG7suBFO4-7w7sqYJwE81razzaYVcXyXgm1SFMbKg/viewform?usp=dialog" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #2c5aa0; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <i class="fas fa-comment-dots"></i> Give Your Feedback
+                <p style="font-size: 14px; color: #666; margin-bottom: 10px;" data-i18n="feedback_txt">Help us improve our service by providing your feedback:</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqacPZ0zG7suBFO4-7w7sqYJwE81razzaYVcXyXgm1SFMbKg/viewform" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #2c5aa0; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <i class="fas fa-comment-dots"></i> <span data-i18n="feedback_btn">Give Your Feedback</span>
                 </a>
             </div>
         </section>
     </div>
 
    <script>
-    // --- SISTEM TRANSLASI BILINGUAL (KAMUS & FUNGSI) ---
-    window.currentLang = 'en';
-    
-    const dictionary = {
-        'en': {
-            'updated_date': 'Updated 9 April 2026',
-            'subtitle_1': 'STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE',
-            'subtitle_2': 'Calculate allowed stay, expiry date, overstay risk and potential fines',
-            'intro_text': 'This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.',
-            'select_visa_label': 'Select Your Visa Type',
-            'select_visa_default': 'Select your visa',
-            'opt_visa_a': 'Visa Exemption (Visa A type) (Only 30 days)',
-            'opt_visa_b': 'Visa on Arrival (VOA)',
-            'opt_visa_c': 'Single Entry Visa (Index Visa C)',
-            'btn_next': 'Next',
-            'btn_back': 'Back',
-            'btn_calc': 'Calculate'
+    // --- 1. SISTEM KAMUS (BILINGUAL DICTIONARY) ---
+    const i18n = {
+        en: {
+            header_updated: "Updated 9 April 2026",
+            header_subtitle1: "STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE",
+            header_subtitle2: "Calculate allowed stay, expiry date, overstay risk and potential fines",
+            intro: "This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.",
+            label_visa: "Select Your Visa Type",
+            opt_default: "Select your visa",
+            opt_a: "Visa Exemption (Visa A type) (Only 30 days)",
+            opt_b: "Visa on Arrival (VOA)",
+            opt_c: "Single Entry Visa (Index Visa C)",
+            label_c_dur: "Select Single Entry C Visa Duration:",
+            c_30_title: "30 Days",
+            c_60_title: "60 Days",
+            c_180_title: "180 Days",
+            c_desc: "Initial Stay",
+            c_30_hover: "Initial stay 30 days.<br>Non-extendable.",
+            c_60_hover: "Initial stay 60 days.<br>Extendable 2x.",
+            c_180_hover: "Initial stay 180 days.<br>Extendable 1x.",
+            info_a: "Several countries, including ASEAN members and others, qualify for Indonesia’s visa exemption. This benefit extends to both citizens and certain residents holding temporary or permanent residence permits.<br><br><strong>Eligible countries:</strong> Brunei Darussalam, Cambodia, Colombia, Hong Kong, Laos, Malaysia, Myanmar, the Philippines, Singapore, Suriname, Thailand, Timor-Leste, and Vietnam.<br><br><strong>Duration:</strong> 30 days<br><strong>Extension:</strong> Non-extendable",
+            info_b: "For citizens of 97 countries, Indonesia offers a Visa On Arrival (VOA) or Electronic Visa On Arrival (EVOA), which allows entry for leisure purposes including tourism, business meetings, and government visits.<br><br><strong>Duration:</strong> 30 days, with an option to extend for an additional 30 days (total of 60 days maximum stay).<br><br><a href='#' id='voaLink' style='color:#007BFF; text-decoration:underline;'>see eligible nationalities for Visa On Arrival (VOA)</a>",
+            info_c: "<strong>Information:</strong> Indonesia offers a variety of Single entry visitor visa, designed to accommodate different needs and activities for foreign nationals. This type of visa allow for one-time entries into Indonesia for specific purposes, such as tourism, business, investment, filming, and more.<br><br><strong>Most C visas:</strong> Are valid for 60 days from the date of entry and can be extended twice for 60 days each, resulting in a total stay of 180 days.<br><br><strong>Exceptions:</strong><br>- Visas C12, C22A, and C22B: Initially issued for 180 days and can be extended once for another 180 days, allowing a total stay of 360 days in the country. These visas are intended for longer stays related to investments, academic internships, or company internships.<br>- Visas C7, C7A, C7B, C7C: initially issued for 30 days and are not eligible for extension<br>- Visa C18: Initially issued for a maximum stay of 60 days from the date of entry, with a total allowable stay of up to 90 days.",
+            dyn_c30: "<strong>Applicable Visa Types (30 Days):</strong> Visa C7, C7A, C7B, C7C",
+            dyn_c60: "<strong>Applicable Visa Types (60 Days):</strong> Visa C1, C2, C3, C5, C6, C7, C8A, C8B, C9, C9A, C9B, C10, C10A, C11, C11A, C13, C14, C15, C16, C17, C19, C20, C21",
+            dyn_c180: "<strong>Applicable Visa Types (180 Days):</strong> Visa C12, C22A, C22B",
+            btn_next: "Next",
+            btn_back: "Back",
+            label_entry: "Entry Date",
+            label_exit: "Planned Exit Date (optional)",
+            label_ext: "Extensions",
+            btn_calc: "Calculate",
+            disclaimer: "<strong>Disclaimer:</strong> This calculator provides estimates based on current Indonesian immigration regulations. Rules may change, and actual visa conditions may vary. Always verify with official immigration authorities or consult with an immigration expert for your specific situation. Overstay fines are calculated at IDR 1,000,000 per person, per day, in accordance with current regulations.",
+            feedback_txt: "Help us improve our service by providing your feedback:",
+            feedback_btn: "Give Your Feedback",
+            voa_title: "VOA Eligible Countries",
+            res_c1: "Initial Visa Stay Permit Duration Before Extensions",
+            res_c1_a: "Initial Visa Stay Permit Duration",
+            res_c2: "Visa Stay Permit Latest Validity Date and Extensions",
+            res_c3: "Potential Fine",
+            day: "day(s)",
+            days: "days",
+            ext: "extension",
+            ext_0: "No Extension",
+            ext_1_30: "1 Extension (30 days)",
+            ext_2_60: "2 Extensions (60 days)",
+            ext_1_60: "1 Extension (60 days)",
+            ext_2_120: "2 Extensions (120 days)",
+            ext_1_180: "1 Extension (180 days)",
+            ext_c18: "1 Extension (30 days) [C18 Visa]",
+            ext_sel: "Select Visa Duration first",
+            step_1: "Initial Stay",
+            step_2: "First Extension",
+            step_3: "Second Extension",
+            validity: "Validity",
+            tot_ext_stay: "total extension & total stay",
+            tot_stay: "days total stay",
+            latest_expiry: "Latest Stay Permit Validity date",
+            notice: "<strong>IMPORTANT NOTICE:</strong> stay permit extension can be applied for as early as 14 days before it expires. Please ensure to submit your application no later than 7 days before the expiry date to avoid the risk of overstaying.",
+            msg_safe1: "Based on your planned exit date",
+            msg_safe2: "you have",
+            msg_safe3: "left before your visa stay permit expires",
+            msg_over1: "Your planned exit date",
+            msg_over2: "has passed your visa stay permit validity date",
+            msg_over3: "Your planned exit exceeds your allowed stay by",
+            msg_deport_warn: "CRITICAL WARNING:",
+            msg_deport_txt1: "Your planned exit exceeds your stay limit by",
+            msg_deport_txt2: "more than",
+            msg_deport_txt3: "You will face <strong>Deportation and Blacklist</strong> instead of a fine.",
+            msg_deport_txt4: "You have overstayed by",
+            msg_deport_txt5: "Under Indonesian Law, you are no longer subject to a daily fine, but facing <strong>Deportation and Blacklist</strong>.",
+            msg_dur1: "Your stay duration is",
+            msg_dur2: "and is valid until",
+            msg_overstay_curr: "Note: Your visa expired on",
+            msg_overstay_curr2: "You are currently overstaying by",
+            alert_select_c: "Please select the Single Entry C Visa Duration.",
+            alert_select_visa: "Please select your visa type first.",
+            alert_entry: "Please enter an Entry Date.",
+            dep_bl: "DEPORTATION & BLACKLIST"
         },
-        'id': {
-            'updated_date': 'Diperbarui 9 April 2026',
-            'subtitle_1': 'STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE',
-            'subtitle_2': 'Hitung izin tinggal, masa berlaku, risiko overstay, dan potensi denda',
-            'intro_text': 'Kalkulator ini membantu Anda menentukan batas waktu izin tinggal di Indonesia, masa berlaku visa, serta risiko overstay dan potensi denda berdasarkan jenis visa dan tanggal masuk Anda.',
-            'select_visa_label': 'Pilih Jenis Visa Anda',
-            'select_visa_default': 'Pilih jenis visa',
-            'opt_visa_a': 'Bebas Visa Kunjungan (Tipe Visa A) (Hanya 30 Hari)',
-            'opt_visa_b': 'Visa Saat Kedatangan (VOA)',
-            'opt_visa_c': 'Visa Kunjungan Sekali Masuk (Indeks Visa C)',
-            'btn_next': 'Selanjutnya',
-            'btn_back': 'Kembali',
-            'btn_calc': 'Hitung'
+        id: {
+            header_updated: "Diperbarui 9 April 2026",
+            header_subtitle1: "STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE",
+            header_subtitle2: "Hitung izin tinggal, masa berlaku, risiko overstay, dan potensi denda",
+            intro: "Kalkulator ini membantu Anda menentukan batas waktu izin tinggal di Indonesia, masa berlaku visa, serta risiko overstay dan potensi denda berdasarkan jenis visa dan tanggal masuk Anda.",
+            label_visa: "Pilih Jenis Visa Anda",
+            opt_default: "Pilih jenis visa",
+            opt_a: "Bebas Visa Kunjungan (Tipe Visa A) (Hanya 30 Hari)",
+            opt_b: "Visa Kunjungan Saat Kedatangan (VOA)",
+            opt_c: "Visa Kunjungan Sekali Masuk (Indeks Visa C)",
+            label_c_dur: "Pilih Durasi Visa Kunjungan Sekali Masuk (Visa C):",
+            c_30_title: "30 Hari",
+            c_60_title: "60 Hari",
+            c_180_title: "180 Hari",
+            c_desc: "Izin Tinggal Awal",
+            c_30_hover: "Izin tinggal awal 30 hari.<br>Tidak dapat diperpanjang.",
+            c_60_hover: "Izin tinggal awal 60 hari.<br>Dapat diperpanjang 2x.",
+            c_180_hover: "Izin tinggal awal 180 hari.<br>Dapat diperpanjang 1x.",
+            info_a: "Beberapa negara, termasuk anggota ASEAN dan lainnya, memenuhi syarat untuk bebas visa kunjungan Indonesia. Fasilitas ini berlaku bagi warga negara dan penduduk tertentu yang memegang izin tinggal sementara atau tetap.<br><br><strong>Negara yang memenuhi syarat:</strong> Brunei Darussalam, Kamboja, Kolombia, Hong Kong, Laos, Malaysia, Myanmar, Filipina, Singapura, Suriname, Thailand, Timor-Leste, dan Vietnam.<br><br><strong>Durasi:</strong> 30 hari<br><strong>Perpanjangan:</strong> Tidak dapat diperpanjang",
+            info_b: "Bagi warga negara dari 97 negara, Indonesia menawarkan Visa Kunjungan Saat Kedatangan (VOA) atau Electronic Visa On Arrival (EVOA), yang mengizinkan masuk untuk tujuan rekreasi termasuk pariwisata, pertemuan bisnis, dan kunjungan pemerintah.<br><br><strong>Durasi:</strong> 30 hari, dengan opsi perpanjangan selama 30 hari tambahan (total masa tinggal maksimum 60 hari).<br><br><a href='#' id='voaLink' style='color:#007BFF; text-decoration:underline;'>lihat kewarganegaraan yang memenuhi syarat VOA</a>",
+            info_c: "<strong>Informasi:</strong> Indonesia menawarkan berbagai Visa Kunjungan Sekali Masuk, yang dirancang untuk mengakomodasi berbagai kebutuhan warga negara asing. Jenis visa ini mengizinkan satu kali masuk ke Indonesia untuk tujuan tertentu, seperti pariwisata, bisnis, investasi, pembuatan film, dll.<br><br><strong>Sebagian besar Visa C:</strong> Berlaku selama 60 hari sejak tanggal masuk dan dapat diperpanjang 2 kali masing-masing 60 hari, menghasilkan total masa tinggal 180 hari.<br><br><strong>Pengecualian:</strong><br>- Visa C12, C22A, dan C22B: Awalnya diterbitkan selama 180 hari dan dapat diperpanjang satu kali untuk 180 hari lagi (total 360 hari).<br>- Visa C7, C7A, C7B, C7C: Awalnya diterbitkan selama 30 hari dan tidak dapat diperpanjang.<br>- Visa C18: Diterbitkan dengan masa tinggal maksimum 60 hari sejak tanggal masuk, dengan total izin tinggal yang diizinkan hingga 90 hari.",
+            dyn_c30: "<strong>Jenis Visa yang Berlaku (30 Hari):</strong> Visa C7, C7A, C7B, C7C",
+            dyn_c60: "<strong>Jenis Visa yang Berlaku (60 Hari):</strong> Visa C1, C2, C3, C5, C6, C7, C8A, C8B, C9, C9A, C9B, C10, C10A, C11, C11A, C13, C14, C15, C16, C17, C19, C20, C21",
+            dyn_c180: "<strong>Jenis Visa yang Berlaku (180 Hari):</strong> Visa C12, C22A, C22B",
+            btn_next: "Selanjutnya",
+            btn_back: "Kembali",
+            label_entry: "Tanggal Masuk",
+            label_exit: "Rencana Tanggal Keluar (Opsional)",
+            label_ext: "Perpanjangan",
+            btn_calc: "Hitung",
+            disclaimer: "<strong>Penyangkalan (Disclaimer):</strong> Kalkulator ini memberikan perkiraan berdasarkan peraturan keimigrasian Indonesia saat ini. Aturan dapat berubah, dan ketentuan visa aktual dapat bervariasi. Selalu verifikasi dengan otoritas imigrasi resmi atau konsultasikan dengan ahli imigrasi. Denda overstay dihitung sebesar Rp 1.000.000 per orang, per hari, sesuai dengan regulasi.",
+            feedback_txt: "Bantu kami meningkatkan layanan dengan memberikan masukan Anda:",
+            feedback_btn: "Berikan Masukan Anda",
+            voa_title: "Negara yang Memenuhi Syarat VOA",
+            res_c1: "Durasi Izin Tinggal Visa Awal Sebelum Perpanjangan",
+            res_c1_a: "Durasi Izin Tinggal Awal",
+            res_c2: "Tanggal Berlaku Izin Tinggal Visa Terbaru dan Perpanjangan",
+            res_c3: "Potensi Denda",
+            day: "hari",
+            days: "hari",
+            ext: "perpanjangan",
+            ext_0: "Tidak Ada Perpanjangan",
+            ext_1_30: "1 Kali Perpanjangan (30 hari)",
+            ext_2_60: "2 Kali Perpanjangan (60 hari)",
+            ext_1_60: "1 Kali Perpanjangan (60 hari)",
+            ext_2_120: "2 Kali Perpanjangan (120 hari)",
+            ext_1_180: "1 Kali Perpanjangan (180 hari)",
+            ext_c18: "1 Kali Perpanjangan (30 hari) [Visa C18]",
+            ext_sel: "Pilih Durasi Visa terlebih dahulu",
+            step_1: "Izin Tinggal Awal",
+            step_2: "Perpanjangan Pertama",
+            step_3: "Perpanjangan Kedua",
+            validity: "Masa Berlaku",
+            tot_ext_stay: "total perpanjangan & total izin tinggal",
+            tot_stay: "hari total izin tinggal",
+            latest_expiry: "Tanggal Masa Berlaku Izin Tinggal Visa Terakhir",
+            notice: "<strong>PEMBERITAHUAN PENTING:</strong> perpanjangan izin tinggal dapat diajukan paling cepat 14 hari sebelum masa berlakunya habis. Pastikan untuk mengajukan permohonan Anda selambat-lambatnya 7 hari sebelum tanggal kedaluwarsa untuk menghindari risiko overstay.",
+            msg_safe1: "Berdasarkan rencana tanggal keluar Anda",
+            msg_safe2: "Anda memiliki sisa",
+            msg_safe3: "sebelum masa berlaku izin tinggal visa Anda habis",
+            msg_over1: "Rencana tanggal keluar Anda",
+            msg_over2: "melewati tanggal masa berlaku izin tinggal visa Anda",
+            msg_over3: "Rencana keluar Anda melebihi izin tinggal yang diizinkan selama",
+            msg_deport_warn: "PERINGATAN KRITIS:",
+            msg_deport_txt1: "Rencana keluar Anda melebihi batas masa tinggal selama",
+            msg_deport_txt2: "lebih dari",
+            msg_deport_txt3: "Anda akan menghadapi <strong>Deportasi dan Penangkalan</strong> alih-alih denda.",
+            msg_deport_txt4: "Anda telah overstay selama",
+            msg_deport_txt5: "Berdasarkan Hukum Indonesia, Anda tidak lagi dikenakan denda harian, melainkan menghadapi <strong>Deportasi dan Penangkalan</strong>.",
+            msg_dur1: "Durasi masa tinggal Anda adalah",
+            msg_dur2: "dan berlaku hingga",
+            msg_overstay_curr: "Catatan: Visa Anda kedaluwarsa pada",
+            msg_overstay_curr2: "Saat ini Anda overstay selama",
+            alert_select_c: "Harap pilih Durasi Visa Kunjungan Sekali Masuk C.",
+            alert_select_visa: "Harap pilih jenis visa Anda terlebih dahulu.",
+            alert_entry: "Harap masukkan Tanggal Masuk.",
+            dep_bl: "DEPORTASI & PENANGKALAN"
         }
     };
+
+    window.currentLang = 'en';
+    
+    // Fungsi cepat mengambil kata
+    function t(key) {
+        return i18n[window.currentLang][key];
+    }
 
     window.setLanguage = function(lang) {
         window.currentLang = lang;
@@ -660,17 +768,55 @@
             }
         });
 
-        // Cari dan ganti semua teks yang memiliki label data-translate
-        document.querySelectorAll('[data-translate]').forEach(element => {
-            const key = element.getAttribute('data-translate');
-            if (dictionary[lang][key]) {
+        // 1. Ganti semua teks HTML Statis
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (i18n[lang][key]) {
                 if (element.tagName === 'OPTION') {
-                    element.text = dictionary[lang][key]; // Khusus untuk dropdown select
+                    element.text = i18n[lang][key]; 
                 } else {
-                    element.innerHTML = dictionary[lang][key]; // Untuk teks biasa (p, h1, span, dll)
+                    element.innerHTML = i18n[lang][key]; 
                 }
             }
         });
+
+        // 2. Ganti Teks Dinamis di Info Boxes
+        document.getElementById('visa-info-box').innerHTML = t('info_a');
+        document.getElementById('voaInfoBox').innerHTML = t('info_b');
+        document.getElementById('singleEntryInfoBox').innerHTML = t('info_c');
+
+        const subType = document.getElementById('c-visa-subtype').value;
+        if (subType) {
+            const dynamicBox = document.getElementById('dynamic-c-visa-info');
+            if (subType === '30') dynamicBox.innerHTML = t('dyn_c30');
+            else if (subType === '60') dynamicBox.innerHTML = t('dyn_c60');
+            else if (subType === '180') dynamicBox.innerHTML = t('dyn_c180');
+        }
+
+        // 3. Ganti Dropdown Extensions yang sedang aktif
+        const visaTypeSelect = document.getElementById('visa-type');
+        const extensionsSelect = document.getElementById('extensions');
+        if (visaTypeSelect.value) {
+             const currVal = extensionsSelect.value;
+             if (visaTypeSelect.value === 'visaA') {
+                 extensionsSelect.innerHTML = `<option value="0">${t('ext_0')}</option>`;
+             } else if (visaTypeSelect.value === 'visaB') {
+                 extensionsSelect.innerHTML = `<option value="0">${t('ext_0')}</option><option value="1">${t('ext_1_30')}</option>`;
+             } else if (visaTypeSelect.value === 'visaC') {
+                 if (subType) {
+                     window.updateExtensionsForC(subType);
+                 } else {
+                     extensionsSelect.innerHTML = `<option value="0">${t('ext_sel')}</option>`;
+                 }
+             }
+             extensionsSelect.value = currVal || '0';
+        }
+
+        // 4. Hitung ulang jika hasil sedang tampil agar teks hasilnya juga di-translate
+        if (document.getElementById('results').classList.contains('active')) {
+            // Trigger the calculator logic directly via a hidden event
+            document.getElementById('visa-form').dispatchEvent(new Event('submit'));
+        }
     };
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -680,6 +826,32 @@
             DENDA_PER_HARI: 1000000,
             BATAS_HARI_DEPORTASI: 60
         };
+
+        // Format Tanggal Dinamis (Mei vs May)
+        const formatDate = (date) => {
+            const locale = window.currentLang === 'id' ? 'id-ID' : 'en-GB';
+            return date.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
+        };
+
+        // --- EVENT DELEGATION UNTUK VOA LINK ---
+        const voaModal = document.getElementById('voaModal');
+        const closeVoaModal = document.getElementById('closeVoaModal');
+        
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.id === 'voaLink') {
+                e.preventDefault();
+                voaModal.style.display = 'block';
+            }
+        });
+        
+        closeVoaModal.addEventListener('click', function() {
+            voaModal.style.display = 'none';
+        });
+        window.addEventListener('click', function(e) {
+            if (e.target === voaModal) {
+                voaModal.style.display = 'none';
+            }
+        });
 
         // --- FUNGSI GLOBAL UNTUK MEMILIH KARTU VISA C ---
         window.selectCSubtype = function(value, element) {
@@ -692,19 +864,10 @@
             element.classList.add('selected');
 
             const dynamicBox = document.getElementById('dynamic-c-visa-info');
-            let infoContent = "";
+            if (value === '30') dynamicBox.innerHTML = t('dyn_c30');
+            else if (value === '60') dynamicBox.innerHTML = t('dyn_c60');
+            else if (value === '180') dynamicBox.innerHTML = t('dyn_c180');
 
-            if (value === '30') {
-                infoContent = `<strong>Applicable Visa Types (30 Days):</strong> Visa C7, C7A, C7B, C7C`;
-            } 
-            else if (value === '60') {
-                infoContent = `<strong>Applicable Visa Types (60 Days):</strong> Visa C1, C2, C3, C5, C6, C7, C8A, C8B, C9, C9A, C9B, C10, C10A, C11, C11A, C13, C14, C15, C16, C17, C18, C19, C20, C21`;
-            } 
-            else if (value === '180') {
-                infoContent = `<strong>Applicable Visa Types (180 Days):</strong> Visa C12, C22A, C22B`;
-            }
-
-            dynamicBox.innerHTML = infoContent;
             dynamicBox.style.display = 'block';
             setTimeout(() => { dynamicBox.classList.add('show'); }, 10);
 
@@ -716,23 +879,22 @@
             extensionsSelect.disabled = false;
 
             if (subType === '30') {
-                extensionsSelect.innerHTML = `<option value="0">No Extension</option>`;
+                extensionsSelect.innerHTML = `<option value="0">${t('ext_0')}</option>`;
                 extensionsSelect.value = '0';
                 extensionsSelect.disabled = true;
             }
             else if (subType === '60') {
                 extensionsSelect.innerHTML = `
-                    <option value="0">No Extension</option>
-                    <option value="c18_ext">1 Extension (30 days) [C18 Visa]</option>
-                    <option value="1">1 Extension (60 days)</option>
-                    <option value="2">2 Extensions (120 days)</option>
+                    <option value="0">${t('ext_0')}</option>
+                    <option value="1">${t('ext_1_60')}</option>
+                    <option value="2">${t('ext_2_120')}</option>
+                    <option value="c18_ext">${t('ext_c18')}</option>
                 `;
                 extensionsSelect.value = '0';
-            }
-            else if (subType === '180') {
+            } else if (subType === '180') {
                 extensionsSelect.innerHTML = `
-                    <option value="0">No Extension</option>
-                    <option value="1">1 Extension (180 days)</option>
+                    <option value="0">${t('ext_0')}</option>
+                    <option value="1">${t('ext_1_180')}</option>
                 `;
                 extensionsSelect.value = '0';
             }
@@ -745,7 +907,6 @@
         const extensionsSelect = document.getElementById('extensions');
         
         const cVisaSubtypeGroup = document.getElementById('c-visa-subtype-group');
-
         const visaStep = document.getElementById('step-visa');
         const detailsStep = document.getElementById('step-details');
         const resultsContainer = document.getElementById('results');
@@ -754,18 +915,10 @@
         const voaBox = document.getElementById('voaInfoBox');
         const singleEntryInfoBox = document.getElementById('singleEntryInfoBox');
 
-        const voaLink = document.getElementById('voaLink');
-        const voaModal = document.getElementById('voaModal');
-        const closeVoaModal = document.getElementById('closeVoaModal');
-
-        infoBox.innerHTML = `
-            Several countries, including ASEAN members and others, qualify for Indonesia’s visa exemption. 
-            This benefit extends to both citizens and certain residents holding temporary or permanent residence permits.<br><br>
-            <strong>Eligible countries:</strong> Brunei Darussalam, Cambodia, Colombia, Hong Kong, Laos, Malaysia, Myanmar, 
-            the Philippines, Singapore, Suriname, Thailand, Timor-Leste, and Vietnam.<br><br>
-            <strong>Duration:</strong> 30 days<br>
-            <strong>Extension:</strong> Non-extendable
-        `;
+        // Set info awal
+        infoBox.innerHTML = t('info_a');
+        voaBox.innerHTML = t('info_b');
+        singleEntryInfoBox.innerHTML = t('info_c');
 
         visaTypeSelect.addEventListener('change', function() {
             const selectedVisa = this.value;
@@ -796,20 +949,20 @@
             if (extRow) extRow.style.display = 'flex';
             
             if (selectedVisa === 'visaA') {
-                extensionsSelect.innerHTML = `<option value="0">No Extension</option>`;
+                extensionsSelect.innerHTML = `<option value="0">${t('ext_0')}</option>`;
                 extensionsSelect.value = '0';
                 extensionsSelect.disabled = true;
             } 
             else if (selectedVisa === 'visaB') {
                 extensionsSelect.innerHTML = `
-                    <option value="0">No Extension</option>
-                    <option value="1">1 Extension (30 days)</option>
+                    <option value="0">${t('ext_0')}</option>
+                    <option value="1">${t('ext_1_30')}</option>
                 `;
                 extensionsSelect.value = '0';
                 extensionsSelect.disabled = false;
             } 
             else if (selectedVisa === 'visaC') {
-                extensionsSelect.innerHTML = `<option value="0">Select Visa Duration first</option>`;
+                extensionsSelect.innerHTML = `<option value="0">${t('ext_sel')}</option>`;
                 extensionsSelect.value = '0';
                 extensionsSelect.disabled = true;
             }
@@ -817,7 +970,7 @@
 
         nextBtn.addEventListener('click', function() {
             if (visaTypeSelect.value === 'visaC' && document.getElementById('c-visa-subtype').value === "") {
-                alert('Please select the Single Entry C Visa Duration.');
+                alert(t('alert_select_c'));
                 return;
             }
 
@@ -826,7 +979,7 @@
                 detailsStep.style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                alert('Please select your visa type first.');
+                alert(t('alert_select_visa'));
             }
         });
 
@@ -848,30 +1001,14 @@
             }
         });
 
-        voaLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            voaModal.style.display = 'block';
-        });
-        closeVoaModal.addEventListener('click', function() {
-            voaModal.style.display = 'none';
-        });
-        window.addEventListener('click', function(e) {
-            if (e.target === voaModal) {
-                voaModal.style.display = 'none';
-            }
-        });
-
         visaForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            calculateVisa();
-        });
-
-        function calculateVisa() {
+            
             const entryDateInput = document.getElementById('entry-date').value;
             const entryDate = entryDateInput ? new Date(entryDateInput + 'T00:00:00') : null; 
 
             if (!entryDate) {
-                 alert("Please enter an Entry Date.");
+                 alert(t('alert_entry'));
                  return; 
             }
 
@@ -880,7 +1017,6 @@
             
             const visaType = visaTypeSelect.value;
             
-            // Logika baru untuk menangani opsi khusus C18
             const extensionsValue = document.getElementById('extensions').value;
             let extensions = 0;
             let isC18Special = false;
@@ -900,7 +1036,6 @@
                 if (subType === '30') { baseDays = 30; extensionDurationPerUnit = 30; } 
                 else if (subType === '60') { 
                     baseDays = 60; 
-                    // Jika C18 dipilih, perpanjangan hanya 30 hari. Jika tidak, normal 60 hari.
                     extensionDurationPerUnit = isC18Special ? 30 : 60; 
                 } 
                 else if (subType === '180') { baseDays = 180; extensionDurationPerUnit = 180; }
@@ -917,15 +1052,13 @@
                 }
             }
 
-            let baseDurationLabelText = 'Initial Visa Stay Permit Duration Before Extensions'; 
+            let baseDurationLabelText = t('res_c1'); 
             if (visaType === 'visaA') {
-                baseDurationLabelText = 'Visa Stay Permit Duration'; 
+                baseDurationLabelText = t('res_c1_a'); 
             }
 
             const extensionOnlyDays = extensions * extensionDurationPerUnit;
             const totalDays = baseDays + extensionOnlyDays;
-            
-            const formatDate = (date) => date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             
             const dateForFirstExtension = new Date(entryDate);
             dateForFirstExtension.setDate(dateForFirstExtension.getDate() + (baseDays - 1));
@@ -946,11 +1079,11 @@
             <div style="display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <span style="font-weight: bold; color: #1a3a6d; font-size: 14px;">1.</span>
-                    <span style="font-size: 14px;">Initial Stay: <strong>${baseDays} days</strong></span>
+                    <span style="font-size: 14px;">${t('step_1')}: <strong>${baseDays} ${t('days')}</strong></span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #1a3a6d; background: #e3f2fd; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
                     <i class="far fa-calendar-alt"></i>
-                    Validity: ${formatDate(dateForFirstExtension)}
+                    ${t('validity')}: ${formatDate(dateForFirstExtension)}
                 </div>
             </div>`;
 
@@ -960,11 +1093,11 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <span style="font-weight: bold; color: #1a3a6d; font-size: 14px;">${stepCount}.</span>
-                        <span style="font-size: 14px;">First Extension: <strong>${extensionDurationPerUnit} days</strong></span>
+                        <span style="font-size: 14px;">${t('step_2')}: <strong>${extensionDurationPerUnit} ${t('days')}</strong></span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #1a3a6d; background: #e3f2fd; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
                         <i class="far fa-calendar-alt"></i>
-                        Validity: ${formatDate(dateForSecondExtension)}
+                        ${t('validity')}: ${formatDate(dateForSecondExtension)}
                     </div>
                 </div>`;
                 stepCount++;
@@ -975,31 +1108,30 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <span style="font-weight: bold; color: #1a3a6d; font-size: 14px;">${stepCount}.</span>
-                        <span style="font-size: 14px;">Second Extension: <strong>${extensionDurationPerUnit} days</strong></span>
+                        <span style="font-size: 14px;">${t('step_3')}: <strong>${extensionDurationPerUnit} ${t('days')}</strong></span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #1a3a6d; background: #e3f2fd; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
                         <i class="far fa-calendar-alt"></i>
-                        Validity: ${formatDate(dateForThirdExtension)}
+                        ${t('validity')}: ${formatDate(dateForThirdExtension)}
                     </div>
                 </div>`;
             }
 
-            // Baris tambahan untuk menampilkan total perpanjangan dan total durasi tinggal
             expiryDetailsHtml += `
             <div style="margin-top: 5px; padding: 0 5px; font-size: 14px; color: #555;">
-                total extension & total stay: <strong>${extensions} extension (${totalDays} days total stay)</strong>
+                ${t('tot_ext_stay')}: <strong>${extensions} ${t('ext')} (${totalDays} ${t('tot_stay')})</strong>
             </div>`;
 
             expiryDetailsHtml += `
             <div style="margin-top: 10px; padding: 10px 5px; border-top: 1px dashed #ccc;">
-                <span style="font-size: 16px; color: #1a3a6d;"><strong>Latest Stay Permit Validity date: ${formatDate(finalExpiryDate)}</strong></span>
+                <span style="font-size: 16px; color: #1a3a6d;"><strong>${t('latest_expiry')}: ${formatDate(finalExpiryDate)}</strong></span>
             </div>`;
 
             expiryDetailsHtml += `
                 <div style="margin-top: 15px; padding: 15px; background-color: #fffde7; border-left: 4px solid #FFC107; font-size: 13px; color: #555; line-height: 1.5; border-radius: 4px; box-shadow: 0 2px 4px rgba(255, 193, 7, 0.1);">
                     <div style="display: flex; align-items: flex-start; gap: 10px;">
                         <i class="fas fa-info-circle" style="color: #FFC107; font-size: 18px; margin-top: 2px;"></i>
-                        <div><strong>IMPORTANT NOTICE:</strong> stay permit extension can be applied for as early as 14 days before it expires. Please ensure to submit your application no later than 7 days before the expiry date to avoid the risk of overstaying.</div>
+                        <div>${t('notice')}</div>
                     </div>
                 </div>
             </div>`;
@@ -1016,11 +1148,11 @@
                  const daysLeftFromExit = Math.floor(timeDiffExit / (1000 * 60 * 60 * 24)); 
 
                  if (daysLeftFromExit >= 0) { 
-                      remainingDaysMessage = `<p>Based on your planned exit date (<strong>${formatDate(exitDate)}</strong>), you have <strong>${daysLeftFromExit} day(s)</strong> left before your visa expires (<strong>${formatDate(finalExpiryDate)}</strong>).</p>`;
+                      remainingDaysMessage = `<p>${t('msg_safe1')} (<strong>${formatDate(exitDate)}</strong>), ${t('msg_safe2')} <strong>${daysLeftFromExit} ${t('day')}</strong> ${t('msg_safe3')} (<strong>${formatDate(finalExpiryDate)}</strong>).</p>`;
                  } else { 
                       const exitOverstayDays = Math.abs(daysLeftFromExit);
                       overstayDays = exitOverstayDays;
-                      remainingDaysMessage = `<p>Your planned exit date (<strong>${formatDate(exitDate)}</strong>) has passed your visa stay permit validity date (<strong>${formatDate(finalExpiryDate)}</strong>).</p>`;
+                      remainingDaysMessage = `<p>${t('msg_over1')} (<strong>${formatDate(exitDate)}</strong>) ${t('msg_over2')} (<strong>${formatDate(finalExpiryDate)}</strong>).</p>`;
                       
                       if (overstayDays > CONFIG.BATAS_HARI_DEPORTASI) {
                           fine = -1; 
@@ -1028,18 +1160,18 @@
                              <div class="deportation-alert">
                                  <i class="fas fa-exclamation-triangle"></i> 
                                  <div>
-                                    <strong>CRITICAL WARNING:</strong><br>
-                                    Your planned exit exceeds your stay limit by <strong>${overstayDays} days</strong> (more than ${CONFIG.BATAS_HARI_DEPORTASI} days).<br>
-                                    You will face <strong>Deportation and Blacklist</strong> instead of a fine.
+                                    <strong>${t('msg_deport_warn')}</strong><br>
+                                    ${t('msg_deport_txt1')} <strong>${overstayDays} ${t('days')}</strong> (${t('msg_deport_txt2')} ${CONFIG.BATAS_HARI_DEPORTASI} ${t('days')}).<br>
+                                    ${t('msg_deport_txt3')}
                                  </div>
                              </div>`;
                       } else {
                           fine = overstayDays * CONFIG.DENDA_PER_HARI;
-                          exitWarningMessage = `<p class="warning">Your planned exit exceeds your allowed stay by <strong>${exitOverstayDays} day(s)</strong>.</p>`;
+                          exitWarningMessage = `<p class="warning">${t('msg_over3')} <strong>${exitOverstayDays} ${t('day')}</strong>.</p>`;
                       }
                  }
             } else { 
-                 remainingDaysMessage = `<p>Your stay duration is <strong>${totalDays} day(s)</strong>, and is valid until <strong>${formatDate(finalExpiryDate)}</strong>.</p>`;
+                 remainingDaysMessage = `<p>${t('msg_dur1')} <strong>${totalDays} ${t('day')}</strong>, ${t('msg_dur2')} <strong>${formatDate(finalExpiryDate)}</strong>.</p>`;
                  
                  if (today > finalExpiryDate) {
                  overstayDays = Math.ceil((today - finalExpiryDate) / (1000 * 60 * 60 * 24));
@@ -1050,26 +1182,21 @@
                         <div class="deportation-alert">
                             <i class="fas fa-exclamation-triangle"></i> 
                             <div>
-                                <strong>CRITICAL WARNING:</strong><br>
-                                You have overstayed by <strong>${overstayDays} days</strong> (more than ${CONFIG.BATAS_HARI_DEPORTASI} days).<br>
-                                Under Indonesian Law, you are no longer subject to a daily fine, but facing <strong>Deportation and Blacklist</strong>.
+                                <strong>${t('msg_deport_warn')}</strong><br>
+                                ${t('msg_deport_txt4')} <strong>${overstayDays} ${t('days')}</strong> (${t('msg_deport_txt2')} ${CONFIG.BATAS_HARI_DEPORTASI} ${t('days')}).<br>
+                                ${t('msg_deport_txt5')}
                             </div>
                         </div>`;
                  } else {
                      fine = overstayDays * CONFIG.DENDA_PER_HARI;
-                     remainingDaysMessage += `<p class="warning">Note: Your visa expired on <strong>${formatDate(finalExpiryDate)}</strong>. You are currently overstaying by <strong>${overstayDays} day(s)</strong>.</p>`;
+                     remainingDaysMessage += `<p class="warning">${t('msg_overstay_curr')} <strong>${formatDate(finalExpiryDate)}</strong>. ${t('msg_overstay_curr2')} <strong>${overstayDays} ${t('day')}</strong>.</p>`;
                  }
             }
             }
 
             document.getElementById('base-duration-label').textContent = baseDurationLabelText; 
-            document.getElementById('base-duration-result').textContent = `${baseDays} days`;
+            document.getElementById('base-duration-result').textContent = `${baseDays} ${t('days')}`;
             
-            // Sembunyikan kartu rangkuman yang tidak digunakan lagi
-            const extensionStayCard = document.getElementById('extension-stay-card');
-            if (extensionStayCard) extensionStayCard.style.display = 'none';
-            
-            document.getElementById('expiry-card-title').textContent = "Visa Stay Permit Latest Validity Date and Extensions";
             document.getElementById('expiry-details').innerHTML = expiryDetailsHtml;
             
             const fineElement = document.getElementById('potential-fine');
@@ -1081,14 +1208,14 @@
             `;
             
             if (fine === -1) {
-                fineElement.innerHTML = `<span class="danger-text" style="font-size: 18px; display: block; margin-bottom: 5px;">DEPORTATION & BLACKLIST</span>` + statusMessageHtml;
+                fineElement.innerHTML = `<span class="danger-text" style="font-size: 18px; display: block; margin-bottom: 5px;">${t('dep_bl')}</span>` + statusMessageHtml;
             } else {
                 let fineAmount = fine > 0 ? `IDR ${fine.toLocaleString('en-US')}` : 'IDR 0';
                 let fineColor = fine > 0 ? '#d32f2f' : '#333'; 
                 fineElement.innerHTML = `<strong style="font-size: 24px; color: ${fineColor}; display: block; margin-bottom: 5px;">${fineAmount}</strong>` + statusMessageHtml;
             }
             resultsContainer.classList.add('active');
-        }
+        });
     });
    </script>
 </body>
