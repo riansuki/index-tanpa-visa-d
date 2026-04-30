@@ -347,6 +347,37 @@
             margin-bottom: 5px;
         }
 
+        /* --- LANGUAGE TOGGLE STYLES --- */
+        .lang-toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 4px;
+            display: flex;
+            gap: 5px;
+            z-index: 100;
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #1a3a6d;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         /* --- DEPORTATION ALERT STYLES --- */
         .danger-text { color: #d32f2f; font-weight: 800; letter-spacing: 0.5px; }
         .deportation-alert {
@@ -402,31 +433,34 @@
     <div class="container">
         <header>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
-                <div></div>
+                <div class="lang-toggle-container">
+                    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('id')">ID</button>
+                </div>
                 <div style="background: rgba(255, 255, 255, 0.2); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block;">
-                    Updated 9 April 2026
+                    <span data-translate="updated_date">Updated 9 April 2026</span>
                 </div>
             </div>
-            <h1 style="letter-spacing: 2px;">SPECIVIC</h1>
-            <p class="subtitle" style="font-weight: 600; letter-spacing: 1px;">STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE</p>
-            <p class="subtitle">Calculate allowed stay, expiry date, overstay risk and potential fines</p>
+           <h1 style="letter-spacing: 2px;">SPECIVIC</h1>
+            <p class="subtitle" style="font-weight: 600; letter-spacing: 1px;" data-translate="subtitle_1">STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE</p>
+            <p class="subtitle" data-translate="subtitle_2">Calculate allowed stay, expiry date, overstay risk and potential fines</p>
         </header>
         
         <section class="calculator-section">
             <div class="intro">
-                <p>This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.</p>
+                <p data-translate="intro_text">This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.</p>
             </div>
             
             <div class="form-container">
                 <form id="visa-form">
                     <div class="form-container" id="step-visa">
-                        <div class="form-group">
-                            <label for="visa-type">Select Your Visa Type</label>
+                       <div class="form-group">
+                            <label for="visa-type" data-translate="select_visa_label">Select Your Visa Type</label>
                             <select id="visa-type" required>
-                                <option value="" disabled selected>Select your visa</option>
-                                <option value="visaA">Visa Exemption (Visa A type) (Only 30 days)</option>
-                                <option value="visaB">Visa on Arrival (VOA)</option>
-                                <option value="visaC">Single Entry Visa (Index Visa C) </option>
+                                <option value="" disabled selected data-translate="select_visa_default">Select your visa</option>
+                                <option value="visaA" data-translate="opt_visa_a">Visa Exemption (Visa A type) (Only 30 days)</option>
+                                <option value="visaB" data-translate="opt_visa_b">Visa on Arrival (VOA)</option>
+                                <option value="visaC" data-translate="opt_visa_c">Single Entry Visa (Index Visa C)</option>
                             </select>
                         </div>
 
@@ -492,13 +526,13 @@
                         </div>
 
                         <div id="next-btn" class="btn-calculate" style="margin-top: 20px;">
-                            Next <i class="fas fa-arrow-right"></i>
+                            <span data-translate="btn_next">Next</span> <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
 
                     <div class="form-container" id="step-details" style="display: none;">
                         <button type="button" id="back-btn" class="btn-back">
-                            <i class="fas fa-arrow-left"></i> Back
+                            <i class="fas fa-arrow-left"></i> <span data-translate="btn_back">Back</span>
                         </button>
                         <div class="form-row">
                             <div class="form-group">
@@ -526,8 +560,8 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn-calculate">
-                            <i class="fas fa-calculator"></i> Calculate
+                       <button type="submit" class="btn-calculate">
+                            <i class="fas fa-calculator"></i> <span data-translate="btn_calc">Calculate</span>
                         </button>
                     </div>
                 </form>
@@ -581,6 +615,64 @@
     </div>
 
    <script>
+    // --- SISTEM TRANSLASI BILINGUAL (KAMUS & FUNGSI) ---
+    window.currentLang = 'en';
+    
+    const dictionary = {
+        'en': {
+            'updated_date': 'Updated 9 April 2026',
+            'subtitle_1': 'STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE',
+            'subtitle_2': 'Calculate allowed stay, expiry date, overstay risk and potential fines',
+            'intro_text': 'This calculator helps you determine your allowed stay period in Indonesia, your visa expiry date, and any potential overstay risks or fines based on your visa type and entry information.',
+            'select_visa_label': 'Select Your Visa Type',
+            'select_visa_default': 'Select your visa',
+            'opt_visa_a': 'Visa Exemption (Visa A type) (Only 30 days)',
+            'opt_visa_b': 'Visa on Arrival (VOA)',
+            'opt_visa_c': 'Single Entry Visa (Index Visa C)',
+            'btn_next': 'Next',
+            'btn_back': 'Back',
+            'btn_calc': 'Calculate'
+        },
+        'id': {
+            'updated_date': 'Diperbarui 9 April 2026',
+            'subtitle_1': 'STAY PERMIT CALCULATION AND VISA INFORMATION INTERFACE',
+            'subtitle_2': 'Hitung izin tinggal, masa berlaku, risiko overstay, dan potensi denda',
+            'intro_text': 'Kalkulator ini membantu Anda menentukan batas waktu izin tinggal di Indonesia, masa berlaku visa, serta risiko overstay dan potensi denda berdasarkan jenis visa dan tanggal masuk Anda.',
+            'select_visa_label': 'Pilih Jenis Visa Anda',
+            'select_visa_default': 'Pilih jenis visa',
+            'opt_visa_a': 'Bebas Visa Kunjungan (Tipe Visa A) (Hanya 30 Hari)',
+            'opt_visa_b': 'Visa Saat Kedatangan (VOA)',
+            'opt_visa_c': 'Visa Kunjungan Sekali Masuk (Indeks Visa C)',
+            'btn_next': 'Selanjutnya',
+            'btn_back': 'Kembali',
+            'btn_calc': 'Hitung'
+        }
+    };
+
+    window.setLanguage = function(lang) {
+        window.currentLang = lang;
+        
+        // Update warna tombol bahasa (EN / ID) yang sedang aktif
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.innerText.toLowerCase() === lang) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Cari dan ganti semua teks yang memiliki label data-translate
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (dictionary[lang][key]) {
+                if (element.tagName === 'OPTION') {
+                    element.text = dictionary[lang][key]; // Khusus untuk dropdown select
+                } else {
+                    element.innerHTML = dictionary[lang][key]; // Untuk teks biasa (p, h1, span, dll)
+                }
+            }
+        });
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
         
         // KONFIGURASI GLOBAL PERATURAN IMIGRASI
