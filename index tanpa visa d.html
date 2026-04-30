@@ -553,7 +553,7 @@
                 <div class="result-card">
                     <div class="result-icon expiry"><i class="fas fa-calendar-check"></i></div>
                     <div class="result-content">
-                        <h3 id="expiry-card-title">Visa Latest Expiry Date and Extensions</h3>
+                        <h3 id="expiry-card-title">Visa Stay Permit Latest Validity Date and Extensions</h3>
                         <div id="expiry-details">-</div>
                     </div>
                 </div>
@@ -825,9 +825,9 @@
                 }
             }
 
-            let baseDurationLabelText = 'Initial Visa Duration Before Extensions'; 
+            let baseDurationLabelText = 'Initial Visa Stay Permit Duration Before Extensions'; 
             if (visaType === 'visaA') {
-                baseDurationLabelText = 'Initial Visa Duration'; 
+                baseDurationLabelText = 'Visa Stay Permit Duration'; 
             }
 
             const extensionOnlyDays = extensions * extensionDurationPerUnit;
@@ -900,7 +900,7 @@
 
             expiryDetailsHtml += `
             <div style="margin-top: 10px; padding: 10px 5px; border-top: 1px dashed #ccc;">
-                <span style="font-size: 16px; color: #1a3a6d;"><strong>Latest Visa Expiry date: ${formatDate(finalExpiryDate)}</strong></span>
+                <span style="font-size: 16px; color: #1a3a6d;"><strong>Latest Stay Permit Validity date: ${formatDate(finalExpiryDate)}</strong></span>
             </div>`;
 
             expiryDetailsHtml += `
@@ -928,7 +928,7 @@
                  } else { 
                       const exitOverstayDays = Math.abs(daysLeftFromExit);
                       overstayDays = exitOverstayDays;
-                      remainingDaysMessage = `<p>Your planned exit date (<strong>${formatDate(exitDate)}</strong>) is after your visa expiry date (<strong>${formatDate(finalExpiryDate)}</strong>).</p>`;
+                      remainingDaysMessage = `<p>Your planned exit date (<strong>${formatDate(exitDate)}</strong>) has passed your visa stay permit validity date (<strong>${formatDate(finalExpiryDate)}</strong>).</p>`;
                       
                       if (overstayDays > CONFIG.BATAS_HARI_DEPORTASI) {
                           fine = -1; 
@@ -947,7 +947,7 @@
                       }
                  }
             } else { 
-                 remainingDaysMessage = `<p>Your stay duration is <strong>${totalDays} day(s)</strong>, expiring on <strong>${formatDate(finalExpiryDate)}</strong>.</p>`;
+                 remainingDaysMessage = `<p>Your stay duration is <strong>${totalDays} day(s)</strong>, and is valid until <strong>${formatDate(finalExpiryDate)}</strong>.</p>`;
                  
                  if (today > finalExpiryDate) {
                  overstayDays = Math.ceil((today - finalExpiryDate) / (1000 * 60 * 60 * 24));
@@ -977,7 +977,7 @@
             const extensionStayCard = document.getElementById('extension-stay-card');
             if (extensionStayCard) extensionStayCard.style.display = 'none';
             
-            document.getElementById('expiry-card-title').textContent = "Visa Latest Expiry Date and Extensions";
+            document.getElementById('expiry-card-title').textContent = "Visa Stay Permit Latest Validity Date and Extensions";
             document.getElementById('expiry-details').innerHTML = expiryDetailsHtml;
             
             const fineElement = document.getElementById('potential-fine');
